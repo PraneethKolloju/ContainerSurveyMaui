@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="ContainerSurveyMaui.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:pages="clr-namespace:ContainerSurveyMaui.Pages"
+    Title="Container Survey Application" 
+   
+    >
+    <TabBar Shell.TabBarForegroundColor="#005298" Shell.TabBarTitleColor="#005298" Shell.NavBarIsVisible="False">
+        <Tab x:Name="ViewDataPage" Title="User Entry" Icon="home.png">
+            <ShellContent
+                Icon="home.png" 
+                 ContentTemplate="{DataTemplate pages:UserEntryPage}"
+                 
+                 Route="ViewDataPage" />
+        </Tab>
+        <Tab x:Name="SurveyPage" Title="Survey" Icon="online_survey.png">
+            <ShellContent
+            ContentTemplate="{DataTemplate pages:SurveyPage}"
+            Route="SurveyPage" />
+        </Tab>
+        <Tab x:Name="AdminPage" Title="Admin" Icon="administrator.png">
+            <ShellContent
+            ContentTemplate="{DataTemplate pages:ViewDataPage}"
+            Route="AdminPage" />
+        </Tab>
+        <Tab x:Name="MasterPage" Title="Master" Icon="leader">
+            <ShellContent
+            ContentTemplate="{DataTemplate pages:MasterPage}"
+            Route="MasterPage" />
+        </Tab>
+    </TabBar>
+    
+       
+
+</Shell>

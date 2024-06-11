@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:inputs="clr-namespace:Syncfusion.Maui.Inputs;assembly=Syncfusion.Maui.Inputs"
+             xmlns:core="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="ContainerSurveyMaui.Pages.TabbedViewPage"
+             x:Class="ContainerSurveyMaui.Pages.HomePage"
+             xmlns:ur="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
+             xmlns:vm="clr-namespace:ContainerSurveyMaui.ViewModels"
+             xmlns:uranium="http://schemas.enisn-projects.io/dotnet/maui/uraniumui"
+            >
+
+    <ScrollView>
+        <StackLayout>
+            <HorizontalStackLayout BackgroundColor="White" HeightRequest="85">
+                <Image Source="vedanta_logo" HeightRequest="90" Margin="70,0,0,0"/>
+            </HorizontalStackLayout>
+
+            <VerticalStackLayout>
+                <StackLayout Margin="20">
+                    <Label HorizontalOptions="Center" FontSize="18" FontFamily="bold">Create a New User</Label>
+                </StackLayout>
+                <StackLayout Margin="20">
+                    <Grid Margin="0,5">
+                        <ur:TextField x:Name="userNameEntry" Title="Username" AccentColor="#005298"/>
+                    </Grid>
+                    <Grid Margin="0,5">
+                        <ur:TextField x:Name="PhoneEntry" Title="PhoneNumber" AccentColor="#005298"/>
+                    </Grid>
+                    <Grid Margin="0,6">
+                        <Frame Opacity="0.3" BorderColor="Black" BackgroundColor="Transparent" CornerRadius="5"/>
+                        <inputs:SfComboBox WidthRequest="300" HeightRequest="50" x:Name="Role" Background="Transparent" ShowBorder="false" Placeholder="Choose Role" DropDownBackground="White">
+                            <inputs:SfComboBox.ItemsSource>
+                                <x:Array Type="{x:Type x:String}">
+                                    <x:String>Admin</x:String>
+                                    <x:String>User</x:String>
+                                    <x:String>Approver</x:String>
+                                </x:Array>
+                            </inputs:SfComboBox.ItemsSource>
+                        </inputs:SfComboBox>
+                    </Grid>
+                    <Grid Margin="0,5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Frame Opacity="0.3" BackgroundColor="White" CornerRadius="5"/>
+                        <ur:TextField x:Name="passwordEntry" Title="Password" AccentColor="#005298" Loaded="Generate_Pwd"/>
+                        <ImageButton Source="undo" Margin="5" HeightRequest="30" WidthRequest="30" Clicked="Generate_Pwd" Grid.Column="1"/>
+                    </Grid>
+                    <Button Text="Create" Margin="20,50" BackgroundColor="#005298" Clicked="Button_Clicked"/>
+                </StackLayout>
+            </VerticalStackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

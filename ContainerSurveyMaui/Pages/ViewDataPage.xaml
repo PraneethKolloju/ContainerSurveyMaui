@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+xmlns:datagrid="clr-namespace:Syncfusion.Maui.DataGrid;assembly=Syncfusion.Maui.DataGrid"
+xmlns:listview="clr-namespace:Syncfusion.Maui.ListView;assembly=Syncfusion.Maui.ListView"
+xmlns:cards="clr-namespace:Syncfusion.Maui.Cards;assembly=Syncfusion.Maui.Cards"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ur="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
+             xmlns:vm="clr-namespace:ContainerSurveyMaui.ViewModels"
+            xmlns:uranium="http://schemas.enisn-projects.io/dotnet/maui/uraniumui"
+             x:Class="ContainerSurveyMaui.Pages.ViewDataPage"
+             
+            >
+
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="datagrid:DataGridHeaderCell">
+                <Setter Property="Background" Value="#AFD5FB"/>
+                <Setter Property="TextColor" Value="#212121"/>
+                <Setter Property="FontAttributes" Value="Italic"/>
+                <Setter Property="FontSize" Value="14"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.BindingContext>
+        <vm:UserDataViewModel/>
+    </ContentPage.BindingContext>
+
+    <StackLayout Margin="1" Loaded="TableView_Loaded">
+        <HorizontalStackLayout BackgroundColor="White" HeightRequest="85">
+            <Image Source="vedanta_logo" HeightRequest="90" Margin="70,0,0,0"/>
+        </HorizontalStackLayout>
+        <Button StyleClass="OutlinedButton"  WidthRequest="300" Text="Create New User" Margin="10" TextColor="#005298" BorderColor="#005298" Clicked="Button_Clicked"/>
+
+        <ScrollView Orientation="Both" HorizontalScrollBarVisibility="Default" VerticalScrollBarVisibility="Default">
+            <!--<ur:DataGrid ItemsSource="{Binding userData}" UseAutoColumns="True" Background="White" Margin="20"  WidthRequest="400" HeightRequest="500">
+            </ur:DataGrid>-->
+            <!--<ur:DataGrid Margin="30" x:Name="dataGrid"  ItemsSource="{Binding userData}" WidthRequest="400" ></ur:DataGrid>-->
+            <ur:DataGrid ItemsSource="{Binding userData}" UseAutoColumns="True" Margin="30" />
+
+        </ScrollView>
+    </StackLayout>
+
+</ContentPage>
