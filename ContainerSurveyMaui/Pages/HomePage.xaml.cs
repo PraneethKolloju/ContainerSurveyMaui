@@ -1,15 +1,26 @@
+using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
 using ContainerSurveyMaui.Constants;
+using ContainerSurveyMaui.Services;
 
 namespace ContainerSurveyMaui.Pages;
 
 public partial class HomePage : ContentPage
 {
+
+    private readonly AuthService _authService;
 	public HomePage()
 	{
 		InitializeComponent();
-	}
+        _authService=new AuthService();
+        List<string> roles = new List<string>
+            {
+                "Admin",
+                "User",
+            };
+        Role.ItemsSource = roles;
+    }
 
 
     private void Generate_Pwd(object sender, EventArgs e)
@@ -45,7 +56,7 @@ public partial class HomePage : ContentPage
         string email = userNameEntry.Text;
         string phone_number = PhoneEntry.Text;
         string password = passwordEntry.Text;
-        string role = Role.Text;
+        string role = Role.SelectedItem as String;
 
         string jsonData = JsonSerializer.Serialize(new
         {
@@ -57,8 +68,11 @@ public partial class HomePage : ContentPage
         });
         var requestData = new StringContent(jsonData, Encoding.UTF8, "application/json");
 
+
         try
         {
+            var token = await _authService.GetToken();
+            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
             var resp = await httpClient.PostAsync("api/Api/Register", requestData);
             string w = resp.StatusCode.ToString();
             //DisplayAlert("Alert",w, "OK");
@@ -80,6 +94,8 @@ public partial class HomePage : ContentPage
             await DisplayAlert("Danger", ex.Message, "Cancel");
         }
     }
+
+  
 
     private void passwordEntry_Loaded(object sender, EventArgs e)
     {

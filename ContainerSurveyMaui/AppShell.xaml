@@ -25,10 +25,10 @@
             ContentTemplate="{DataTemplate pages:ViewDataPage}"
             Route="AdminPage" />
         </Tab>
-        <Tab x:Name="MasterPage" Title="Master" Icon="leader">
+        <Tab x:Name="MasterPage" Title="Logout" Icon="logout">
             <ShellContent
             ContentTemplate="{DataTemplate pages:MasterPage}"
-            Route="MasterPage" />
+            Route="Logout" />
         </Tab>
     </TabBar>
     

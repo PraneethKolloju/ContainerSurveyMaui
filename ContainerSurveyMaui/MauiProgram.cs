@@ -4,6 +4,9 @@ using ContainerSurveyMaui.Services;
 using Microsoft.Extensions.Logging;
 using Plugin.Maui.Biometric;
 using UraniumUI;
+using SkiaSharp;
+using Microsoft.Maui.Controls.Hosting;
+
 
 namespace ContainerSurveyMaui
 {
@@ -15,6 +18,7 @@ namespace ContainerSurveyMaui
             builder
                 .UseMauiApp<App>()
                 .UseUraniumUI()
+                .UseMauiMaps()
                 .UseUraniumUIMaterial()
             .ConfigureSyncfusionCore()
                 .ConfigureFonts(fonts =>
@@ -39,7 +43,6 @@ namespace ContainerSurveyMaui
 
             builder.Services.AddTransient<LoginPage>();
             builder.Services.AddTransient<HomePage>();
-            builder.Services.AddTransient<LoadingPage>();
 
             return builder.Build();
         }

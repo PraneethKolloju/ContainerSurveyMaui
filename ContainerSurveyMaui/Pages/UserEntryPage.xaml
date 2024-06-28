@@ -4,13 +4,15 @@
              x:Class="ContainerSurveyMaui.Pages.UserEntryPage"
              xmlns:ur="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
              xmlns:uranium="http://schemas.enisn-projects.io/dotnet/maui/uraniumui"
+            
+
              >
     <ScrollView>
         <VerticalStackLayout>
             <HorizontalStackLayout BackgroundColor="White" HeightRequest="85">
-                <Image Source="vedanta_logo" HeightRequest="90" Margin="40,0,0,0"/>
+                <Image Source="vedanta_logo" HeightRequest="90" Margin="30,0,0,0"/>
             </HorizontalStackLayout>
-            <Label FontSize="20" HorizontalOptions="Center" Margin="0,10,0,15" >Container Survey Entry</Label>
+            <Label FontSize="20" HorizontalOptions="Center" Margin="0,10,0,15" TextColor="#005298">Container Survey Entry</Label>
             <VerticalStackLayout Margin="0,20,0,0">
                 <ur:PickerField Margin="0,5,0,10" Title="Port*" WidthRequest="340" HeightRequest="50" AccentColor="#005298" ItemsSource="{Binding Ports}" x:Name="Port">
                 </ur:PickerField>

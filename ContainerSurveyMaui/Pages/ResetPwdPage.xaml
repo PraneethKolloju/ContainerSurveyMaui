@@ -4,6 +4,7 @@ xmlns:core="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
              xmlns:buttons="clr-namespace:Syncfusion.Maui.Buttons;assembly=Syncfusion.Maui.Buttons"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ContainerSurveyMaui.Pages.ResetPwdPage"
+             NavigationPage.HasBackButton="False"
              >
     <ScrollView>
         <StackLayout>
@@ -11,7 +12,7 @@ xmlns:core="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
                 <Image Source="vedanta_logo" HeightRequest="90" Margin="40,0,0,0"/>
             </HorizontalStackLayout>
             <VerticalStackLayout Margin="25">
-                <Label FontSize="25" HorizontalOptions="Center" Margin="0,0,0,15" >Reset Password</Label>
+                <Label FontSize="25" HorizontalOptions="Center" Margin="0,0,0,15" TextColor="#005298">Reset Password</Label>
                 <Label FontSize="15" HorizontalOptions="Center" Margin="0,7,0,8" x:Name="validationMsg"></Label>
                 <core:SfTextInputLayout Hint="User Name" 
                    Stroke="#005298"

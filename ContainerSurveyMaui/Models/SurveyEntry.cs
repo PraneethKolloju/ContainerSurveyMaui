@@ -8,18 +8,19 @@ namespace ContainerSurveyMaui.Models
 {
     public class SurveyEntry
     {
-        public string? Port { get; set; }
-        public string? Yard { get; set; }
-        public string? Shipping_line { get; set; }
-        public string? Container_No { get; set; }
-        public string? Container_Selection { get; set; }
-        public byte[]? Attachment_1 { get; set; }
-        public byte[]? Attachment_2 { get; set; }
-        public byte[]? Attachment_3 { get; set; }
-        public byte[]? Attachment_4 { get; set; }
-        public string? Remarks { get; set; }
-        public string? Location { get; set; }
+        public int? id { get; set; } 
+        public string? port { get; set; }
+        public string? yard { get; set; }
+        public string? shipping_line { get; set; }
+        public string? container_No { get; set; }
+        public string? container_Selection { get; set; }
+        public byte[]? attachment_1 { get; set; }
+        public byte[]? attachment_2 { get; set; }
+        public byte[]? attachment_3 { get; set; }
+        public byte[]? attachment_4 { get; set; }
+        public string? remarks { get; set; }
+        public string? location { get; set; }
 
-        public DateTime? CreatedOn { get; set; }
+        public DateTime? createdOn { get; set; }
     }
 }

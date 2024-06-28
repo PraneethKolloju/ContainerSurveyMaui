@@ -20,10 +20,7 @@ public partial class ViewDataPage : ContentPage
         await Navigation.PushAsync(new HomePage());
 
     }
-    protected override bool OnBackButtonPressed()
-    {
-        return true;
-    }
+    
     private async void TableView_Loaded(object sender, EventArgs e)
     {
         var data =await  _authService.GetUserInfo();
@@ -33,4 +30,5 @@ public partial class ViewDataPage : ContentPage
     {
         await Navigation.PushAsync(new HomePage()); 
     }
+   
 }

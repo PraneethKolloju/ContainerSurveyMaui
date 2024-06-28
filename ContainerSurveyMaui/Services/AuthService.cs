@@ -120,25 +120,33 @@ namespace ContainerSurveyMaui.Services
 
         public async Task<bool> Resetpassword(string username,string oldpassword, string newpassword)
         {
-            if (_httpClient.BaseAddress == null)
-                _httpClient.BaseAddress = new Uri(Constants.Constants.BaseUrl);
-            string token = await GetToken();
-            _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
-            string jsonData = JsonSerializer.Serialize(new
+            try
             {
-                username,
-                oldpassword,
-                newpassword
-            });
-            var requestData = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var response = await _httpClient.PostAsync("/api/Api/Resetpassword", requestData);
-            var strResponse = await response.Content.ReadAsStringAsync();
-            if(response.IsSuccessStatusCode)
-            {
-                return true;
-            }
-            return false;
+                if (_httpClient.BaseAddress == null)
+                    _httpClient.BaseAddress = new Uri(Constants.Constants.BaseUrl);
+                string token = await GetToken();
+                _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+                string jsonData = JsonSerializer.Serialize(new
+                {
+                    username,
+                    oldpassword,
+                    newpassword
+                });
+                var requestData = new StringContent(jsonData, Encoding.UTF8, "application/json");
+                var response = await _httpClient.PostAsync("/api/Api/Resetpassword", requestData);
+                var strResponse = await response.Content.ReadAsStringAsync();
+                if (response.IsSuccessStatusCode)
+                {
+                    return true;
+                }
+                return false;
 
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
 
         }
 

@@ -1,12 +1,16 @@
 ﻿using ContainerSurveyMaui.Models;
 using ContainerSurveyMaui.Pages;
+using ContainerSurveyMaui.ViewModels;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Http.Json;
 using System.Reflection;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace ContainerSurveyMaui.Services
@@ -35,19 +39,23 @@ namespace ContainerSurveyMaui.Services
                 if (_httpClient.BaseAddress == null)
                     _httpClient.BaseAddress = new Uri(Constants.Constants.BaseUrl);
 
-                SurveyEntry data= new SurveyEntry{
-                    Port= Data.Port,
-                    Yard= Data.Yard,
-                    Shipping_line= Data.Shipping_line,
-                    Container_No= Data.Container_No,
-                    Container_Selection= Data.Container_Selection,
-                    Remarks= Data.Remarks,
-                    Attachment_1= Data.Attachment_1,
-                    Attachment_2= Data.Attachment_2,
-                    Attachment_3= Data.Attachment_3,
-                    Attachment_4= Data.Attachment_4,
-                    Location= Data.Location,
+                SurveyEntry data = new SurveyEntry
+                {
+                    port = Data.port,
+                    yard = Data.yard,
+                    shipping_line = Data.shipping_line,
+                    container_No = Data.container_No,
+                    container_Selection = Data.container_Selection,
+                    remarks = Data.remarks,
+                    attachment_1 = Data.attachment_1,
+                    attachment_2 = Data.attachment_2,
+                    attachment_3 = Data.attachment_3,
+                    attachment_4 = Data.attachment_4,
+                    location = Data.location,
                 };
+
+                var token =await _auth.GetToken();
+                _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
 
                 var response = await _httpClient.PostAsJsonAsync("/api/Api/SurveyEntry",data);
                 response.EnsureSuccessStatusCode();
@@ -59,5 +67,41 @@ namespace ContainerSurveyMaui.Services
             }
         }
 
+        public async Task<string> GetSurveyData()
+        {
+            try
+            {
+                if (_httpClient.BaseAddress == null)
+                    _httpClient.BaseAddress = new Uri(Constants.Constants.BaseUrl);
+
+                var response = await _httpClient.GetAsync("/api/Api/SurveyEntry");
+                var data =  response.Content.ReadAsStringAsync().Result;
+                return data;
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+
+        public async Task<Byte[]> SurveyDetails(int? id,int atch)
+        {
+            try
+            {
+                if (_httpClient.BaseAddress == null)
+                    _httpClient.BaseAddress = new Uri(Constants.Constants.BaseUrl);
+
+                var response = await _httpClient.GetAsync($"/api/Api/SurveyEntryDetails?id={id}&atch={atch}");
+                var data = response.Content.ReadAsStringAsync().Result;
+                byte[] byteArray = System.Text.Encoding.UTF8.GetBytes(data);
+                return byteArray;
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
     }
 }

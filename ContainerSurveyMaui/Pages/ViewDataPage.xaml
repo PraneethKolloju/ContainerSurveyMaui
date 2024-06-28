@@ -8,7 +8,7 @@ xmlns:cards="clr-namespace:Syncfusion.Maui.Cards;assembly=Syncfusion.Maui.Cards"
              xmlns:vm="clr-namespace:ContainerSurveyMaui.ViewModels"
             xmlns:uranium="http://schemas.enisn-projects.io/dotnet/maui/uraniumui"
              x:Class="ContainerSurveyMaui.Pages.ViewDataPage"
-             
+
             >
 
 

@@ -10,8 +10,8 @@ public partial class LoginPage : ContentPage
 {
     private readonly IAuthService _authService;
     public LoginPage()
-	{
-		InitializeComponent();
+    {
+        InitializeComponent();
         _authService = new AuthService();
 
     }
@@ -23,12 +23,15 @@ public partial class LoginPage : ContentPage
             var email = userNameEntry.Text;
             var password = passwordEntry.Text;
 
+            overlay.IsVisible = true;
+            mainLayout.IsEnabled = false;
+
             bool result = await _authService.LoginApi(email, password);
 
             if (result)
             {
                 ActivityIndicator activityIndicator = new ActivityIndicator { IsRunning = true };
-                await Navigation.PushAsync(new AppShell());
+                Application.Current.MainPage = new NavigationPage(new AppShell());
             }
             else
                 await DisplayAlert("Alert", "Incorrect Credentials", "ok");
@@ -38,15 +41,21 @@ public partial class LoginPage : ContentPage
 
             throw;
         }
-      
+        finally
+        {
+            overlay.IsVisible = false;
+            mainLayout.IsEnabled = true;
+
+        }
+
     }
 
-    private async void Bio_Clicked(object sender,EventArgs e)
+    private async void Bio_Clicked(object sender, EventArgs e)
     {
         try
         {
             var result = await BiometricAuthenticationService.Default.AuthenticateAsync(new
-              AuthenticationRequest()
+            AuthenticationRequest()
             {
                 Title = "Please Authenticate",
                 NegativeText = "Cancel authentication"
@@ -54,15 +63,18 @@ public partial class LoginPage : ContentPage
 
             if (result.Status == BiometricResponseStatus.Success)
                 await Navigation.PushAsync(new AppShell());
-
             else
                 await DisplayAlert("Alert", "Incorrect Credentials", "OK");
 
         }
-        catch (Exception)
+        catch (Exception ex)
         {
-
             throw;
         }
+    }
+
+    protected override bool OnBackButtonPressed()
+    {
+        return true;
     }
 }

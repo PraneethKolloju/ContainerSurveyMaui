@@ -337,23 +337,23 @@ public partial class UserEntryPage : ContentPage
 
             var result = _getPostService.SurveyEntry(new SurveyEntry
             {
-                Port = Port.SelectedItem as String,
-                Yard = Yard.SelectedItem as String,
-                Shipping_line = ShipLine.SelectedItem as String,
-                Container_No = ContainerNo.Text as String,
-                Container_Selection = ContainerSelection.SelectedItem as String,
-                Attachment_1 = imageByte1,
-                Attachment_2 = imageByte2,
-                Attachment_3 = imageByte3,
-                Attachment_4 = imageByte4,
-                Remarks = Remarks.Text,
-                Location = resultlocation
+                port = Port.SelectedItem as String,
+                yard = Yard.SelectedItem as String,
+                shipping_line = ShipLine.SelectedItem as String,
+                container_No = ContainerNo.Text as String,
+                container_Selection = ContainerSelection.SelectedItem as String,
+                attachment_1 = imageByte1,
+                attachment_2 = imageByte2,
+                attachment_3 = imageByte3,
+                attachment_4 = imageByte4,
+                remarks = Remarks.Text,
+                location = resultlocation
             }) ;
 
 
             await DisplayAlert("Alert", "Data Saved Successfully", "OK");
 
-            await Navigation.PushAsync(new HomePage());
+            await Navigation.PushAsync(new UserEntryPage());
             
 
         }
@@ -363,10 +363,9 @@ public partial class UserEntryPage : ContentPage
             throw;
         }
     }
-
-    protected override void OnAppearing()
+    protected override bool OnBackButtonPressed()
     {
-        base.OnAppearing();
-        NavigationPage.SetHasBackButton(this, false);
+        return true;
     }
+
 }

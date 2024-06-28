@@ -42,5 +42,33 @@ namespace ContainerSurveyMaui
                 throw;
             }
         }
+
+        protected override async void OnNavigating(ShellNavigatingEventArgs args)
+        {
+            base.OnNavigating(args);
+
+            if (args.Target.Location.OriginalString.Contains("//Logout"))
+            {
+                bool answer = await DisplayAlert("Logout", "Are you sure you want to logout?", "Yes", "No");
+                if (answer)
+                {
+                    Logout();
+                }
+                else
+                {
+                    args.Cancel();
+                }
+            }
+        }
+
+        private void Logout()
+        {
+            SecureStorage.Default.RemoveAll();
+            Application.Current.MainPage = new NavigationPage(new LoginPage());
+            AdminPage.IsVisible = false;
+            ViewDataPage.IsVisible = false;
+            SurveyPage.IsVisible = false;
+            
+        }
     }
 }

@@ -2,14 +2,82 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ContainerSurveyMaui.Pages.SurveyPage"
+                          NavigationPage.HasBackButton="False"
+              xmlns:vm="clr-namespace:ContainerSurveyMaui.ViewModels"
+                          xmlns:maps="clr-namespace:Microsoft.Maui.Controls.Maps;assembly=Microsoft.Maui.Controls.Maps"
+
+             xmlns:local="clr-namespace:ContainerSurveyMaui.Converters"
+
+
              >
-    <VerticalStackLayout>
-        <HorizontalStackLayout BackgroundColor="White" HeightRequest="85">
-            <Image Source="vedanta_logo" HeightRequest="90" Margin="70,0,0,0"/>
-        </HorizontalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+
+    <ContentPage.BindingContext>
+        <vm:MainViewModel/>
+    </ContentPage.BindingContext>
+
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:ByteArrayToImageSourceConverter x:Key="ByteArrayToImageSourceConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+
+        <ScrollView VerticalScrollBarVisibility="Always">
+            <StackLayout>
+                
+                <Image Source="{Binding VbImage}" 
+                       HeightRequest="300" WidthRequest="300" />
+                <HorizontalStackLayout BackgroundColor="White" HeightRequest="95">
+                    <Image Source="vedanta_logo" HeightRequest="90" Margin="70,0,0,0"/>
+                </HorizontalStackLayout>
+                <Label FontSize="25" HorizontalOptions="Center" Margin="0,15,10,4" TextColor="#005298">Survey Details</Label>
+                <VerticalStackLayout Margin="30,30,30,15">
+                    <CollectionView ItemsSource="{Binding SurveyData}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Frame BorderColor="#005298" Margin="0,0,0,16"  BackgroundColor="Transparent" HasShadow="True" CornerRadius="6" >
+                                    <StackLayout Margin="0,10,0,0">
+                                        <HorizontalStackLayout Spacing="5">
+                                            <Label FontAttributes="Bold" FontSize="15">Port:</Label>
+                                            <Label Text="{Binding port}" />
+                                        </HorizontalStackLayout>
+                                        <HorizontalStackLayout Spacing="5">
+                                            <Label FontAttributes="Bold" FontSize="15">Yard:</Label>
+                                            <Label Text="{Binding yard}" />
+                                        </HorizontalStackLayout>
+                                        <HorizontalStackLayout Spacing="5">
+                                            <Label FontAttributes="Bold" FontSize="15">Container No:</Label>
+                                            <Label Text="{Binding container_No}" />
+                                        </HorizontalStackLayout>
+                                        <HorizontalStackLayout Spacing="5">
+                                            <Label FontAttributes="Bold" FontSize="15">Container Selection:</Label>
+                                            <Label Text="{Binding container_Selection}" />
+                                        </HorizontalStackLayout>
+                                        <HorizontalStackLayout Spacing="5">
+                                            <Label FontAttributes="Bold" FontSize="15">Remarks:</Label>
+                                            <Label Text="{Binding remarks}" />
+                                        </HorizontalStackLayout>
+                                        <StackLayout Margin="0,5,0,10">
+                                            <Button Text="Attachment 1" Clicked="Button_Clicked" ImageSource="file" BorderColor="Black" BackgroundColor="White" TextColor="#005298" WidthRequest="340" HeightRequest="40"/>
+                                        </StackLayout>
+                                        <StackLayout Margin="0,5,0,10">
+                                            <Button Text="Attachment 2" Clicked="Button_Clicked_1" ImageSource="file" BorderColor="Black" BackgroundColor="White" TextColor="#005298" WidthRequest="340" HeightRequest="40"/>
+                                        </StackLayout>
+                                        <StackLayout Margin="0,5,0,10">
+                                            <Button Text="Attachment 3" Clicked="Button_Clicked_2" ImageSource="file" BorderColor="Black" BackgroundColor="White" TextColor="#005298" WidthRequest="340" HeightRequest="40"/>
+                                        </StackLayout>
+                                        <StackLayout Margin="0,5,0,10">
+                                            <Button Text="Attachment 4" Clicked="Button_Clicked_3" ImageSource="file" BorderColor="Black" BackgroundColor="White" TextColor="#005298" WidthRequest="340" HeightRequest="40"/>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
 </ContentPage>

@@ -26,18 +26,17 @@ public partial class ResetPwdPage : ContentPage
         string rePassword = txt.NewTextValue;
 
         var passWord = newpassword.Text;
-        if (passWord != rePassword)
-        {
-            pwdMatch.Text = "passwords doesnot match";
-            pwdMatch.TextColor = new Color(173,0 , 0);
-            resetbtn.IsEnabled = false;
-        }
-        else
+        if (passWord == rePassword)
         {
             pwdMatch.Text = "passwords match";
             pwdMatch.TextColor = new Color(0, 173, 0);
             resetbtn.IsEnabled = true;
-
+        }
+        else
+        {
+            pwdMatch.Text = "passwords doesnot match";
+            pwdMatch.TextColor = new Color(173, 0, 0);
+            resetbtn.IsEnabled = false;
         }
     }
 
@@ -46,6 +45,16 @@ public partial class ResetPwdPage : ContentPage
         var userName = username.Text;
         var oldPassword = password.Text;
         var newPassword = newpassword.Text;
+        var rePassword = newpassword.Text;
+
+        if(newPassword== rePassword)
+        {
+            resetbtn.IsEnabled = true;
+        }else
+        {
+            resetbtn.IsEnabled = false;
+
+        }
 
         bool result = await _authService.Resetpassword(userName, oldPassword, newPassword);
         if (result)
@@ -96,7 +105,16 @@ public partial class ResetPwdPage : ContentPage
 
     }
 
-    
+    protected override bool OnBackButtonPressed()
+    {
+        return true;
+    }
+
+
+
+
+
+
 
 }
 

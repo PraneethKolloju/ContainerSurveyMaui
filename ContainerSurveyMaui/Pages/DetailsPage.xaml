@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ContainerSurveyMaui.Pages.DetailsPage"
+             Title="DetailsPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Image x:Name="ImageMaui" HeightRequest="500" WidthRequest="500" Aspect="AspectFit" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
