@@ -12,6 +12,7 @@ public class SurveyDetailsViewModel : BaseViewModel
     public SurveyDetailsViewModel(int id)
 	{
 		_getpostservice = new GetPostSevice();
+
         SurveyData= new ObservableCollection<SurveyDetails>();
 	}
 

@@ -53,12 +53,19 @@
 
 		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
 		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+		
 	</ItemGroup>
+	<ItemGroup>
+		<MauiAsset Include="Resources\Raw\MapLeaf.html" />
+	</ItemGroup>
+
 
 	<ItemGroup>
 	  <None Remove="Resources\Images\file.png" />
 	  <None Remove="Resources\Images\forgot.png" />
+	  <None Remove="Resources\Images\location.png" />
 	  <None Remove="Resources\Images\logout.png" />
+	  <None Remove="Resources\Images\search.png" />
 	  <None Remove="Resources\Images\upload.png" />
 	</ItemGroup>
 
@@ -96,6 +103,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\MainPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\MapsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\MasterPage.xaml">

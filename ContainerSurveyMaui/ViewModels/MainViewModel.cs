@@ -1,34 +1,34 @@
 ﻿using ContainerSurveyMaui.Models;
 using ContainerSurveyMaui.Services;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace ContainerSurveyMaui.ViewModels
 {
-    public class MainViewModel : INotifyPropertyChanged
+    public class MainViewModel : BaseViewModel
     {
-        private byte[] vbImage;
         private readonly GetPostSevice _getpostservice;
+        private SurveyEntry _selectedSurveyEntry;
 
         public ObservableCollection<SurveyEntry> SurveyData { get; set; }
 
-        public byte[] VbImage
+        private bool _isLoading;
+        public bool IsLoading
         {
-            get { return vbImage; }
+            get => _isLoading;
+            set => SetProperty(ref _isLoading, value);
+        }
+
+        public SurveyEntry SelectedSurveyEntry
+        {
+            get => _selectedSurveyEntry;
             set
             {
-                if (vbImage != value)
-                {
-                    vbImage = value;
-                    OnPropertyChanged();
-                }
+                _selectedSurveyEntry = value;
+                OnPropertyChanged();
             }
         }
 
@@ -36,6 +36,7 @@ namespace ContainerSurveyMaui.ViewModels
         {
             _getpostservice = new GetPostSevice();
             SurveyData = new ObservableCollection<SurveyEntry>();
+            IsLoading = true;
             LoadSurveyDataAsync();
         }
 
@@ -48,32 +49,60 @@ namespace ContainerSurveyMaui.ViewModels
 
                 foreach (var item in data)
                 {
-                    var temp = new SurveyEntry
+                    SurveyData.Add(new SurveyEntry
                     {
                         id = item.id,
                         yard = item.yard,
                         port = item.port,
                         container_No = item.container_No,
                         container_Selection = item.container_Selection,
-                        remarks = item.remarks
-                    };
-                    SurveyData.Add(temp);
+                        remarks = item.remarks,
+                        location=item.location,
+                        attachment_1 = item.attachment_1,
+                        attachment_2 = item.attachment_2,
+                        attachment_3 = item.attachment_3,
+                        attachment_4 = item.attachment_4,
+                        
+                    });
+
                 }
             }
             catch (Exception ex)
             {
                 // Handle the exception
             }
+            finally
+            {
+                IsLoading=false;
+
+            }
         }
 
-        public async Task LoadImageAsync(int surveyId, int detailType)
+        public async Task LoadAttachmentAsync(int surveyId, int attachmentNumber)
         {
             try
             {
-                var res = await _getpostservice.SurveyDetails(surveyId, detailType);
-                if (res != null)
+                var result = await _getpostservice.SurveyDetails(surveyId,attachmentNumber);
+                if (result != null && SelectedSurveyEntry != null)
                 {
-                    VbImage = res;
+                    switch (attachmentNumber)
+                    {
+                        case 1:
+                            SelectedSurveyEntry.attachment_1 = result;
+                            break;
+                        case 2:
+                            SelectedSurveyEntry.attachment_2 = result;
+                            break;
+                        case 3:
+                            SelectedSurveyEntry.attachment_3 = result;
+                            break;
+                        case 4:
+                            SelectedSurveyEntry.attachment_4 = result;
+                            break;
+                    }
+
+                    // Notify that SelectedSurveyEntry has changed
+                    OnPropertyChanged(nameof(SelectedSurveyEntry));
                 }
             }
             catch (Exception ex)
@@ -83,7 +112,6 @@ namespace ContainerSurveyMaui.ViewModels
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

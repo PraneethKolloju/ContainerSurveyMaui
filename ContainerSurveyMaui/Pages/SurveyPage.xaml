@@ -1,20 +1,15 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<!--<?xml version="1.0" encoding="utf-8" ?>-->
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ContainerSurveyMaui.Pages.SurveyPage"
-                          NavigationPage.HasBackButton="False"
-              xmlns:vm="clr-namespace:ContainerSurveyMaui.ViewModels"
-                          xmlns:maps="clr-namespace:Microsoft.Maui.Controls.Maps;assembly=Microsoft.Maui.Controls.Maps"
+                          xmlns:ur="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
 
-             xmlns:local="clr-namespace:ContainerSurveyMaui.Converters"
-
-
-             >
+             xmlns:vm="clr-namespace:ContainerSurveyMaui.ViewModels"
+             xmlns:local="clr-namespace:ContainerSurveyMaui.Converters">
 
     <ContentPage.BindingContext>
         <vm:MainViewModel/>
     </ContentPage.BindingContext>
-
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -26,13 +21,22 @@
 
         <ScrollView VerticalScrollBarVisibility="Always">
             <StackLayout>
-                
-                <Image Source="{Binding VbImage}" 
-                       HeightRequest="300" WidthRequest="300" />
                 <HorizontalStackLayout BackgroundColor="White" HeightRequest="95">
-                    <Image Source="vedanta_logo" HeightRequest="90" Margin="70,0,0,0"/>
+                    <Image Source="vedanta_logo" HeightRequest="90" Margin="50,0,0,0" BackgroundColor="Transparent"/>
                 </HorizontalStackLayout>
-                <Label FontSize="25" HorizontalOptions="Center" Margin="0,15,10,4" TextColor="#005298">Survey Details</Label>
+                <Label FontSize="25" HorizontalOptions="Center" Margin="0,15,10,4" TextColor="#005298">Survey Entry Details</Label>
+                <Grid Margin="0,20,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="auto" />
+                    </Grid.ColumnDefinitions>
+                    <ur:TextField x:Name="ContainerNo" Title="Search Container no" AccentColor="Black" WidthRequest="230" Margin="65,0,14,0"/>
+                    <ImageButton Source="search" Margin="0" HeightRequest="30" WidthRequest="30" Clicked="ImageButton_Clicked" Grid.Column="1"/>
+                </Grid>
+                <StackLayout>
+                    <ActivityIndicator IsRunning="{Binding IsLoading}" IsVisible="{Binding IsLoading}" Color="#005298"  />
+                    <Label Text="This might take 10 to 15 seconds" IsVisible="{Binding IsLoading}" HorizontalOptions="Center" />
+                </StackLayout>
                 <VerticalStackLayout Margin="30,30,30,15">
                     <CollectionView ItemsSource="{Binding SurveyData}">
                         <CollectionView.ItemTemplate>
@@ -59,23 +63,21 @@
                                             <Label FontAttributes="Bold" FontSize="15">Remarks:</Label>
                                             <Label Text="{Binding remarks}" />
                                         </HorizontalStackLayout>
-                                        <StackLayout Margin="0,5,0,10">
-                                            <Button Text="Attachment 1" Clicked="Button_Clicked" ImageSource="file" BorderColor="Black" BackgroundColor="White" TextColor="#005298" WidthRequest="340" HeightRequest="40"/>
-                                        </StackLayout>
-                                        <StackLayout Margin="0,5,0,10">
-                                            <Button Text="Attachment 2" Clicked="Button_Clicked_1" ImageSource="file" BorderColor="Black" BackgroundColor="White" TextColor="#005298" WidthRequest="340" HeightRequest="40"/>
-                                        </StackLayout>
-                                        <StackLayout Margin="0,5,0,10">
-                                            <Button Text="Attachment 3" Clicked="Button_Clicked_2" ImageSource="file" BorderColor="Black" BackgroundColor="White" TextColor="#005298" WidthRequest="340" HeightRequest="40"/>
-                                        </StackLayout>
-                                        <StackLayout Margin="0,5,0,10">
-                                            <Button Text="Attachment 4" Clicked="Button_Clicked_3" ImageSource="file" BorderColor="Black" BackgroundColor="White" TextColor="#005298" WidthRequest="340" HeightRequest="40"/>
-                                        </StackLayout>
+                                        <HorizontalStackLayout Padding="0,40,0,3">
+                                            <Button Text="Show Attachments" Clicked="Button_Clicked_4" ImageSource="file" BorderColor="Black" BackgroundColor="White" TextColor="#005298" WidthRequest="250" HeightRequest="50" BindingContext="{Binding .}" />
+                                        </HorizontalStackLayout>
+
+                                        <HorizontalStackLayout Padding="0,10">
+                                            <Button Text="Show Location" Clicked="Button_Clicked" ImageSource="location"  BorderColor="Black" BackgroundColor="White" TextColor="#005298" WidthRequest="250" HeightRequest="50" VerticalOptions="Start" BindingContext="{Binding .}" />
+                                        </HorizontalStackLayout>
+
+
                                     </StackLayout>
                                 </Frame>
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
                     </CollectionView>
+
                 </VerticalStackLayout>
             </StackLayout>
         </ScrollView>

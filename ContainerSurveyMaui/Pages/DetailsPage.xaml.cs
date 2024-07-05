@@ -1,30 +1,34 @@
+using ContainerSurveyMaui.Models;
 using ContainerSurveyMaui.ViewModels;
+using System.Collections.Generic;
+using Microsoft.Maui.Controls;
+using Syncfusion.Maui.Core.Carousel;
 
-namespace ContainerSurveyMaui.Pages;
-
-public partial class DetailsPage : ContentPage
+namespace ContainerSurveyMaui.Pages
 {
-    
-    public DetailsPage(byte[] imageData)
+    public partial class DetailsPage : ContentPage
     {
-        InitializeComponent();
-        DisplayImage(imageData);
-    }
-    private void DisplayImage(byte[] imageBytes)
-    {
-        try
+        //public List<SurveyDetails> ImageDataDemoList { get; set; } = new List<SurveyDetails>();
+
+        private ViewImageViewModel viewModel;
+        public DetailsPage(int i)
         {
-            if (imageBytes == null || imageBytes.Length == 0)
-            {
-                DisplayAlert("Error", "Image data is invalid", "OK"); 
-                return;
-            }
-            var imageStream = new MemoryStream(imageBytes);
-            ImageMaui.Source = ImageSource.FromStream(() => imageStream);
+            Preferences.Set("Id", i);
+            InitializeComponent();
+            viewModel = new ViewImageViewModel(); // Initialize viewModel
+            BindingContext = viewModel;
+
         }
-        catch (Exception ex)
+
+        private void Button_Clicked(object sender, EventArgs e)
         {
-            throw;
+             Navigation.PushAsync(new SurveyPage());
+        }
+
+
+        private async void ImageButton_Clicked_1(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new SurveyPage());
         }
     }
 }

@@ -2,10 +2,86 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ContainerSurveyMaui.Pages.DetailsPage"
-             Title="DetailsPage">
+             NavigationPage.HasBackButton="True"
+             xmlns:vm="clr-namespace:ContainerSurveyMaui.ViewModels"
+             xmlns:local="clr-namespace:ContainerSurveyMaui.Converters"
+             Title="View Attachments"
+             >
+
+    <ContentPage.BindingContext>
+        <vm:ViewImageViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:ByteArrayToImageSourceConverter x:Key="ByteArrayToImageSourceConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
     <ContentPage.Content>
-        <StackLayout>
-            <Image x:Name="ImageMaui" HeightRequest="500" WidthRequest="500" Aspect="AspectFit" />
-        </StackLayout>
+        <ScrollView VerticalScrollBarVisibility="Always">
+            <StackLayout>
+                <HorizontalStackLayout BackgroundColor="White" HeightRequest="95">
+                    <Image Source="vedanta_logo" HeightRequest="90" Margin="50,0,0,0"/>
+                </HorizontalStackLayout>
+                <Label FontSize="25" HorizontalOptions="Center" Margin="0,15,10,4" TextColor="#005298"  Grid.Column="1">Attachments</Label>
+                <StackLayout>
+                    <ActivityIndicator IsRunning="{Binding IsLoading}" IsVisible="{Binding IsLoading}" Color="#005298"  />
+                    <Label Text="This might take 10 to 15 seconds" IsVisible="{Binding IsLoading}" HorizontalOptions="Center" />
+                </StackLayout>
+              
+                <VerticalStackLayout Margin="20,20">
+                    <CollectionView ItemsSource="{Binding ImageData}">
+                        <CollectionView.ItemTemplate>
+                            
+                            <DataTemplate>
+                                <Frame BorderColor="#005298"  BackgroundColor="Transparent" HasShadow="True" CornerRadius="6" >
+                                    <StackLayout Margin="0,10,0,20">
+                                        
+                                        <HorizontalStackLayout Padding="0,0,0,10">
+                                            <Image Source="{Binding attachment_1, Converter={StaticResource ByteArrayToImageSourceConverter}}"  
+            HeightRequest="300" WidthRequest="300" />
+                                        </HorizontalStackLayout>
+                                        <HorizontalStackLayout  Padding="0,0,0,10" HorizontalOptions="Center">
+                                            <Label Text="Attachment 1"/>
+                                        </HorizontalStackLayout>
+                                        
+                                        
+                                        <HorizontalStackLayout  Padding="0,0,10,10">
+                                            <Image Source="{Binding attachment_2, Converter={StaticResource ByteArrayToImageSourceConverter}}"  
+HeightRequest="300" WidthRequest="300" />
+                                            </HorizontalStackLayout>
+                                        <HorizontalStackLayout  Padding="0,0,0,10" HorizontalOptions="Center">
+                                            <Label Text="Attachment 2"/>
+                                        </HorizontalStackLayout>
+
+                                        
+                                        <HorizontalStackLayout  Padding="0,0,10,10">
+                                            <Image Source="{Binding attachment_3, Converter={StaticResource ByteArrayToImageSourceConverter}}"  
+HeightRequest="300" WidthRequest="300" />
+                                        </HorizontalStackLayout>
+                                        <HorizontalStackLayout  Padding="0,0,0,10" HorizontalOptions="Center">
+                                            <Label Text="Attachment 3"/>
+                                        </HorizontalStackLayout>
+                                        
+                                        
+                                        <HorizontalStackLayout  Padding="0,0,10,0">
+                                            <Image Source="{Binding attachment_4, Converter={StaticResource ByteArrayToImageSourceConverter}}"  
+HeightRequest="300" WidthRequest="300" />
+                                        </HorizontalStackLayout>
+                                        <HorizontalStackLayout  Padding="0,0,0,0" HorizontalOptions="Center">
+                                            <Label Text="Attachment 4"/>
+                                        </HorizontalStackLayout>
+
+
+
+                                    </StackLayout>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

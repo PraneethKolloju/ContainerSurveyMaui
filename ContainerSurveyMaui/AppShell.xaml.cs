@@ -34,9 +34,13 @@ namespace ContainerSurveyMaui
             {
                 var Role = await SecureStorage.GetAsync("Role");
                 if (Role == "User")
+                {
                     AdminPage.IsVisible = false;
+                    SurveyPage.IsVisible=false;
+                }
+
             }
-            catch (Exception)
+            catch (Exception)      
             {
 
                 throw;
@@ -67,8 +71,7 @@ namespace ContainerSurveyMaui
             Application.Current.MainPage = new NavigationPage(new LoginPage());
             AdminPage.IsVisible = false;
             ViewDataPage.IsVisible = false;
-            SurveyPage.IsVisible = false;
-            
+            SurveyPage.IsVisible = false;           
         }
     }
 }

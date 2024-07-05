@@ -8,6 +8,6 @@ namespace ContainerSurveyMaui.Constants
 {
     public class Constants
     {
-        public const string BaseUrl = "https://1904-103-93-20-138.ngrok-free.app"; 
+        public const string BaseUrl = "http://172.20.144.1:5091"; 
     }
 }

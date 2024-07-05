@@ -21,6 +21,8 @@ namespace ContainerSurveyMaui.Services
         
         Task<bool> SurveyEntry(SurveyEntry Data);
 
+
+
     }
     public class GetPostSevice :IGetPostService
     {
@@ -54,8 +56,8 @@ namespace ContainerSurveyMaui.Services
                     location = Data.location,
                 };
 
-                var token =await _auth.GetToken();
-                _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+                //var token =await _auth.GetToken();
+                //_httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
 
                 var response = await _httpClient.PostAsJsonAsync("/api/Api/SurveyEntry",data);
                 response.EnsureSuccessStatusCode();
@@ -74,7 +76,7 @@ namespace ContainerSurveyMaui.Services
                 if (_httpClient.BaseAddress == null)
                     _httpClient.BaseAddress = new Uri(Constants.Constants.BaseUrl);
 
-                var response = await _httpClient.GetAsync("/api/Api/SurveyEntry");
+                var response = await _httpClient.GetAsync($"/api/Api/SurveyEntry");
                 var data =  response.Content.ReadAsStringAsync().Result;
                 return data;
             }
@@ -96,6 +98,26 @@ namespace ContainerSurveyMaui.Services
                 var data = response.Content.ReadAsStringAsync().Result;
                 byte[] byteArray = System.Text.Encoding.UTF8.GetBytes(data);
                 return byteArray;
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+
+        public async Task<string> GetImages(int? id)
+        {
+            try
+            {
+                if (_httpClient.BaseAddress == null)
+                    _httpClient.BaseAddress = new Uri(Constants.Constants.BaseUrl);
+
+                List<Byte[]> imageresult = new List<byte[]>();
+
+                var response = await _httpClient.GetAsync($"/api/Api/Images?id={id}");
+                var data = response.Content.ReadAsStringAsync().Result;
+                return data;
             }
             catch (Exception ex)
             {

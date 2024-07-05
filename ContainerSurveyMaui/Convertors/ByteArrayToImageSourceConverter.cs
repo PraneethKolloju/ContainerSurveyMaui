@@ -1,9 +1,7 @@
-﻿using System;
+﻿using Microsoft.Maui.Controls;
+using System;
 using System.Globalization;
 using System.IO;
-using Microsoft.Maui.Controls;
-using Microsoft.Maui.Graphics;
-using System.Drawing;
 
 namespace ContainerSurveyMaui.Converters
 {
@@ -13,10 +11,8 @@ namespace ContainerSurveyMaui.Converters
         {
             if (value is byte[] byteArray && byteArray.Length > 0)
             {
-                var stream = new MemoryStream(byteArray);
-                return ImageSource.FromStream(() => stream);
+                return ImageSource.FromStream(() => new MemoryStream(byteArray));
             }
-
             return null;
         }
 

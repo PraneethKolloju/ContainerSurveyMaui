@@ -18,12 +18,14 @@ namespace ContainerSurveyMaui.ViewModels
         public ObservableCollection<SurveyEntry> SurveyData { get; set; }
         private readonly GetPostSevice _getpostservice;
 
+        
 
         public SurveyEntryViewModel()
 
         {
             _getpostservice= new GetPostSevice();
-            SurveyData= new ObservableCollection<SurveyEntry>();   
+            SurveyData= new ObservableCollection<SurveyEntry>();
+
             LoadDataAsync();
 
         }
@@ -37,7 +39,7 @@ namespace ContainerSurveyMaui.ViewModels
 
                 foreach (var i in data)
                 {
-                    var temp = new SurveyEntry { id = i.id,yard=i.yard, port = i.port, container_No = i.container_No, container_Selection = i.container_Selection,remarks=i.remarks,location=i.location };
+                    var temp = new SurveyEntry { id = i.id,yard=i.yard, port = i.port, container_No = i.container_No, container_Selection = i.container_Selection,remarks=i.remarks,location=i.location , attachment_1=i.attachment_1 };
                     SurveyData.Add(temp);
                 }
             }
@@ -45,6 +47,9 @@ namespace ContainerSurveyMaui.ViewModels
             {
 
                 throw;
+            }
+            finally
+            {
             }
 
         }
