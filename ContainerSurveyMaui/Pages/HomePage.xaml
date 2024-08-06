@@ -17,18 +17,17 @@
             </HorizontalStackLayout>
             <VerticalStackLayout>
                 <HorizontalStackLayout Margin="20" Spacing="60">
-                    <Image Source="leftarrow" WidthRequest="30"> </Image>
-                    <Label HorizontalOptions="Center" FontSize="18" FontFamily="bold">Create a New User</Label>
+                    <Label HorizontalOptions="Center" FontSize="18" Margin="95,0,0,0" FontFamily="bold">Create a New User</Label>
                 </HorizontalStackLayout>
                 <StackLayout Margin="20">
                     <Grid Margin="0,5">
-                        <ur:TextField x:Name="userNameEntry" Title="Username" AccentColor="#005298"/>
+                        <ur:TextField x:Name="userNameEntry" Title="Username*" AccentColor="#005298" TextColor="Black"/>
                     </Grid>
                     <Grid Margin="0,5">
-                        <ur:TextField x:Name="PhoneEntry" Title="PhoneNumber" AccentColor="#005298"/>
+                        <ur:TextField x:Name="PhoneEntry" Title="PhoneNumber*" AccentColor="#005298" TextColor="Black"/>
                     </Grid>
                     <Grid Margin="0,6">
-                        <ur:PickerField Title="Pick a Role" x:Name="Role" AccentColor="#005298"/>
+                        <ur:PickerField Title="Pick a Role*" x:Name="Role" AccentColor="#005298" TextColor="Black"/>
                     </Grid>
                     <Grid Margin="0,5">
                         <Grid.ColumnDefinitions>

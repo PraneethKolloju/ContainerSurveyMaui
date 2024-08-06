@@ -8,19 +8,18 @@
    
     >
     <TabBar Shell.TabBarForegroundColor="#005298" Shell.TabBarTitleColor="#005298" Shell.NavBarIsVisible="False">
-        <Tab x:Name="ViewDataPage" Title="User Entry" Icon="home.png">
+        <Tab x:Name="ViewDataPage" Title="User Entry" Icon="home.png" IsVisible="False">
             <ShellContent
                 Icon="home.png" 
                  ContentTemplate="{DataTemplate pages:UserEntryPage}"
-                 
                  Route="ViewDataPage" />
         </Tab>
-        <Tab x:Name="SurveyPage" Title="Survey" Icon="online_survey.png">
+        <Tab x:Name="SurveyPage" Title="Entry List" Icon="list" IsVisible="False">
             <ShellContent
             ContentTemplate="{DataTemplate pages:SurveyPage}"
             Route="SurveyPage" />
         </Tab>
-        <Tab x:Name="AdminPage" Title="Admin" Icon="administrator.png">
+        <Tab x:Name="AdminPage" Title="Admin" Icon="administrator" IsVisible="False">
             <ShellContent
             ContentTemplate="{DataTemplate pages:ViewDataPage}"
             Route="AdminPage" />
@@ -31,7 +30,7 @@
             Route="Logout" />
         </Tab>
     </TabBar>
-    
-       
+
+
 
 </Shell>

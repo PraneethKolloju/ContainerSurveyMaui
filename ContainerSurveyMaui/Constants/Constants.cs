@@ -8,6 +8,6 @@ namespace ContainerSurveyMaui.Constants
 {
     public class Constants
     {
-        public const string BaseUrl = "http://172.20.144.1:5091"; 
+        public const string BaseUrl = "http://192.168.1.8:5091";
     }
 }

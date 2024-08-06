@@ -37,14 +37,15 @@ namespace ContainerSurveyMaui.ViewModels
             _getpostservice = new GetPostSevice();
             SurveyData = new ObservableCollection<SurveyEntry>();
             IsLoading = true;
+            string item = Preferences.Get("ContainerNo","None");
             LoadSurveyDataAsync();
         }
 
-        private async void LoadSurveyDataAsync()
+        public async void LoadSurveyDataAsync()
         {
             try
             {
-                var result = await _getpostservice.GetSurveyData();
+                var result = await _getpostservice.GetTopSurveyData();
                 var data = JsonSerializer.Deserialize<List<SurveyEntry>>(result);
 
                 foreach (var item in data)
@@ -78,6 +79,46 @@ namespace ContainerSurveyMaui.ViewModels
             }
         }
 
+        public async void LoadSurveySearchDataAsync(string CNo)
+        {
+            try
+            {
+                var result = await _getpostservice.GetSurveyDataOnSearch(CNo);
+                var data = JsonSerializer.Deserialize<List<SurveyEntry>>(result);
+                SurveyData.Clear();
+
+                foreach (var item in data)
+                {
+                    SurveyData.Add(new SurveyEntry
+                    {
+                        id = item.id,
+                        yard = item.yard,
+                        port = item.port,
+                        container_No = item.container_No,
+                        container_Selection = item.container_Selection,
+                        remarks = item.remarks,
+                        location = item.location,
+                        attachment_1 = item.attachment_1,
+                        attachment_2 = item.attachment_2,
+                        attachment_3 = item.attachment_3,
+                        attachment_4 = item.attachment_4,
+
+                    });
+
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle the exception
+            }
+            finally
+            {
+                IsLoading = false;
+
+            }
+        }
+
+
         public async Task LoadAttachmentAsync(int surveyId, int attachmentNumber)
         {
             try
@@ -103,7 +144,7 @@ namespace ContainerSurveyMaui.ViewModels
 
                     // Notify that SelectedSurveyEntry has changed
                     OnPropertyChanged(nameof(SelectedSurveyEntry));
-                }
+                } 
             }
             catch (Exception ex)
             {

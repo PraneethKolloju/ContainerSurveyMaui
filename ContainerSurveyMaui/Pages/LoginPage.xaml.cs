@@ -23,18 +23,43 @@ public partial class LoginPage : ContentPage
             var email = userNameEntry.Text;
             var password = passwordEntry.Text;
 
-            overlay.IsVisible = true;
-            mainLayout.IsEnabled = false;
-
-            bool result = await _authService.LoginApi(email, password);
-
-            if (result)
+            if (email == null || password == null || email=="" || password=="")
             {
-                ActivityIndicator activityIndicator = new ActivityIndicator { IsRunning = true };
-                Application.Current.MainPage = new NavigationPage(new AppShell());
+                if (email == null || email == "")
+                {
+                    nameValidation.Text = "Enter Valid Username";
+                }
+                else
+                {
+                    nameValidation.Text = "";
+                }
+                if (password == null || password == "")
+                {
+                    pwdValidations.Text = "Enter Valid Password";
+                }
+                else
+                {
+                    pwdValidations.Text = "";
+                }
+                //Application.Current.MainPage = new NavigationPage(new LoginPage());
+
             }
             else
-                await DisplayAlert("Alert", "Incorrect Credentials", "ok");
+            {
+
+                overlay.IsVisible = true;
+                mainLayout.IsEnabled = false;
+
+                bool result = await _authService.LoginApi(email, password);
+
+                if (result)
+                {
+                    ActivityIndicator activityIndicator = new ActivityIndicator { IsRunning = true };
+                    Application.Current.MainPage = new NavigationPage(new AppShell());
+                }
+                else
+                    await DisplayAlert("Alert", "Incorrect Credentials", "ok");
+            }
         }
         catch (Exception)
         {
@@ -45,7 +70,6 @@ public partial class LoginPage : ContentPage
         {
             overlay.IsVisible = false;
             mainLayout.IsEnabled = true;
-
         }
 
     }

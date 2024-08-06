@@ -6,6 +6,7 @@
              xmlns:vm="clr-namespace:ContainerSurveyMaui.ViewModels"
              xmlns:local="clr-namespace:ContainerSurveyMaui.Converters"
              Title="View Attachments"
+              NavigationPage.HasNavigationBar="True"
              >
 
     <ContentPage.BindingContext>
@@ -21,13 +22,13 @@
     <ContentPage.Content>
         <ScrollView VerticalScrollBarVisibility="Always">
             <StackLayout>
-                <HorizontalStackLayout BackgroundColor="White" HeightRequest="95">
+                <HorizontalStackLayout BackgroundColor="White" HeightRequest="95" HorizontalOptions="Center">
                     <Image Source="vedanta_logo" HeightRequest="90" Margin="50,0,0,0"/>
                 </HorizontalStackLayout>
                 <Label FontSize="25" HorizontalOptions="Center" Margin="0,15,10,4" TextColor="#005298"  Grid.Column="1">Attachments</Label>
                 <StackLayout>
                     <ActivityIndicator IsRunning="{Binding IsLoading}" IsVisible="{Binding IsLoading}" Color="#005298"  />
-                    <Label Text="This might take 10 to 15 seconds" IsVisible="{Binding IsLoading}" HorizontalOptions="Center" />
+                    <Label Text="This might take some time" IsVisible="{Binding IsLoading}" HorizontalOptions="Center" />
                 </StackLayout>
               
                 <VerticalStackLayout Margin="20,20">

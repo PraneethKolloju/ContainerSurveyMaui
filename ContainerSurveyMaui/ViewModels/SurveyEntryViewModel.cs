@@ -34,7 +34,7 @@ namespace ContainerSurveyMaui.ViewModels
         {
             try
             {
-                var result = await _getpostservice.GetSurveyData();
+                var result = await _getpostservice.GetTopSurveyData();
                 var data = JsonSerializer.Deserialize<List<SurveyEntry>>(result);
 
                 foreach (var i in data)

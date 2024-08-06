@@ -1,6 +1,7 @@
 ﻿using ContainerSurveyMaui.Pages;
 using ContainerSurveyMaui.Services;
 using Syncfusion.Maui.Popup;
+using System.Diagnostics;
 
 namespace ContainerSurveyMaui
 {
@@ -11,11 +12,16 @@ namespace ContainerSurveyMaui
 
         public AppShell()
         {
-            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("Ngo9BigBOggjHTQxAR8/V1NBaF1cXmhPYVF1WmFZfVpgcV9CYFZSQWYuP1ZhSXxXdkBhXX9bdHRWQGhbV0M=");
             InitializeComponent();
             _authService = new AuthService();
-            ConfigureTabs().ConfigureAwait(false);
-            LoadPopup().ConfigureAwait(false);
+
+        }
+
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+            await ConfigureTabs();
+            await LoadPopup();
         }
 
         private async Task LoadPopup()
@@ -28,42 +34,58 @@ namespace ContainerSurveyMaui
             }
         }
 
+
+
         public async Task ConfigureTabs()
         {
+
             try
             {
                 var Role = await SecureStorage.GetAsync("Role");
                 if (Role == "User")
                 {
+                    CurrentItem = ViewDataPage;
+                    ViewDataPage.IsVisible = true;
                     AdminPage.IsVisible = false;
-                    SurveyPage.IsVisible=false;
+                    MasterPage.IsVisible = true;
+                }
+                else if (Role == "Admin")
+                {
+                    CurrentItem = SurveyPage;
+                    SurveyPage.IsVisible = true;
+                    AdminPage.IsVisible = true;
+                    MasterPage.IsVisible = true;
+
+
                 }
 
             }
-            catch (Exception)      
+            catch (Exception)
             {
-
                 throw;
             }
         }
 
-        protected override async void OnNavigating(ShellNavigatingEventArgs args)
-        {
-            base.OnNavigating(args);
 
-            if (args.Target.Location.OriginalString.Contains("//Logout"))
-            {
-                bool answer = await DisplayAlert("Logout", "Are you sure you want to logout?", "Yes", "No");
-                if (answer)
-                {
-                    Logout();
-                }
-                else
-                {
-                    args.Cancel();
-                }
-            }
-        }
+
+
+        //protected override async void OnNavigating(ShellNavigatingEventArgs args)
+        //{
+        //    base.OnNavigating(args);
+
+        //    if (args.Target.Location.OriginalString.Contains("//Logout"))
+        //    {
+        //        bool answer = await DisplayAlert("Logout", "Are you sure you want to logout?", "Yes", "No");
+        //        if (answer)
+        //        {
+        //            Logout();
+        //        }
+        //        else
+        //        {
+        //            args.Cancel();
+        //        }
+        //    }
+        //}
 
         private void Logout()
         {
@@ -71,7 +93,9 @@ namespace ContainerSurveyMaui
             Application.Current.MainPage = new NavigationPage(new LoginPage());
             AdminPage.IsVisible = false;
             ViewDataPage.IsVisible = false;
-            SurveyPage.IsVisible = false;           
+            SurveyPage.IsVisible = false;
         }
+
+
     }
 }

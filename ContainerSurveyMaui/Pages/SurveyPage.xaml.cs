@@ -6,6 +6,7 @@ using System.Drawing;
 using Microsoft.Maui.Controls.PlatformConfiguration.TizenSpecific;
 using SkiaSharp;
 using ContainerSurveyMaui.ViewModels;
+using CommunityToolkit.Maui.Storage;
 
 namespace ContainerSurveyMaui.Pages;
 public partial class SurveyPage : ContentPage
@@ -17,8 +18,16 @@ public partial class SurveyPage : ContentPage
     {
         InitializeComponent();
         _getpostservice = new GetPostSevice();
-        viewModel = new MainViewModel(); // Initialize viewModel
-        BindingContext = viewModel; // Set the BindingContext here
+        viewModel = new MainViewModel();
+        BindingContext = viewModel;
+    }
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        viewModel = new MainViewModel();
+        BindingContext = viewModel;
+
     }
 
     protected override bool OnBackButtonPressed()
@@ -44,7 +53,6 @@ public partial class SurveyPage : ContentPage
         else
         {
             Navigation.PushAsync(new DetailsPage(i));
-
             //await Navigation.PushAsync(new DetailsPage(res));
         }
     }
@@ -60,9 +68,101 @@ public partial class SurveyPage : ContentPage
         await Navigation.PushAsync(new MapsPage(i));
     }
 
-    private void ImageButton_Clicked(object sender, EventArgs e)
+    private async void ImageButton_Clicked(object sender, EventArgs e)
     {
         var searchedNo = ContainerNo.Text;
+        Preferences.Set("searchedItem", searchedNo);
+        viewModel.LoadSurveySearchDataAsync(searchedNo);
+    }
+
+    private async void Image_Download(object sender, EventArgs e)
+    {
+        var button = sender as Button;
+        if (button == null) return;
+
+        var surveyEntry = button.BindingContext as SurveyEntry;
+        if (surveyEntry == null) return;
+        int i = surveyEntry.id.Value;
+        var res = await _getpostservice.GetImages(i);
+        var data = JsonSerializer.Deserialize<List<SurveyDetails>>(res);
+        await SaveAttachments(data[0]);
 
     }
+
+    private async Task SaveAttachments(SurveyDetails imageData)
+    {
+        try
+        {
+            int i = 0;
+            //string directoryPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+            //directoryPath = Path.Combine(directoryPath, "DownloadedImages");
+
+            //Directory.CreateDirectory(directoryPath);
+
+            if (imageData.attachment_1 != null)
+            {
+                
+               
+                using (var stream=new MemoryStream(imageData.attachment_1))
+                {
+                    var res = await FileSaver.SaveAsync("Attachment1.jpg", stream, CancellationToken.None);
+                    if(res.IsSuccessful)
+                    {
+                        i += 1;
+                    }
+                }
+            }
+            if (imageData.attachment_2 != null)
+            {
+
+                
+                using (var stream = new MemoryStream(imageData.attachment_2))
+                {
+                    var res = await FileSaver.SaveAsync("Attachment2.jpg", stream, CancellationToken.None);
+                    if (res.IsSuccessful)
+                    {
+                        i += 1;
+                    }
+                }
+            }
+            if (imageData.attachment_3 != null)
+            {
+
+                using (var stream = new MemoryStream(imageData.attachment_3))
+                {
+                    var res = await FileSaver.SaveAsync("Attachment3.jpg", stream, CancellationToken.None);
+                    if (res.IsSuccessful)
+                    {
+                        i += 1;
+                    }
+                }
+            }
+            if (imageData.attachment_4 != null)
+            {
+
+                using (var stream = new MemoryStream(imageData.attachment_4))
+                {
+                    var res = await FileSaver.SaveAsync("Attachment4.jpg", stream, CancellationToken.None);
+                    if (res.IsSuccessful)
+                    {
+                        i += 1;
+                    }
+                }
+            }
+
+            if (i == 4)
+            {
+                await DisplayAlert("Success", "Images downloaded successfully.", "OK");
+
+            }
+
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Error", $"Failed to download images: {ex.Message}", "OK");
+        }
+    }
+
 }
+
+

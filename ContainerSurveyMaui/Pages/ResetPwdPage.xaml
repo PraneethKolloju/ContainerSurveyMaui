@@ -4,56 +4,34 @@ xmlns:core="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
              xmlns:buttons="clr-namespace:Syncfusion.Maui.Buttons;assembly=Syncfusion.Maui.Buttons"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ContainerSurveyMaui.Pages.ResetPwdPage"
+                          xmlns:ur="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
+
              NavigationPage.HasBackButton="False"
              >
     <ScrollView>
         <StackLayout>
             <HorizontalStackLayout BackgroundColor="White" HeightRequest="85">
-                <Image Source="vedanta_logo" HeightRequest="90" Margin="40,0,0,0"/>
+                <Image Source="vedanta_logo" HeightRequest="90" Margin="70,0,0,0"/>
             </HorizontalStackLayout>
             <VerticalStackLayout Margin="25">
                 <Label FontSize="25" HorizontalOptions="Center" Margin="0,0,0,15" TextColor="#005298">Reset Password</Label>
-                <Label FontSize="15" HorizontalOptions="Center" Margin="0,7,0,8" x:Name="validationMsg"></Label>
-                <core:SfTextInputLayout Hint="User Name" 
-                   Stroke="#005298"
-                   ContainerType="Outlined"
-                   ContainerBackground="White" HeightRequest="80" OutlineCornerRadius="10" x:Name="username">
-                    <Entry/>
-                </core:SfTextInputLayout>
-                <core:SfTextInputLayout Hint="Enter Password" 
-                   Stroke="#005298"
-                   ContainerType="Outlined"
-                   ContainerBackground="White" HeightRequest="80"  EnablePasswordVisibilityToggle="True"  OutlineCornerRadius="10" x:Name="password">
-                    <Entry TextChanged="Entry_TextChanged_2"/>
-                </core:SfTextInputLayout>
-                <VerticalStackLayout Margin="0,0,0,10">
-                    <core:SfTextInputLayout Hint="Enter New Password" 
-                                        Stroke="#005298" x:Name="newpassword"
-                                        ContainerType="Outlined"
-                                       ContainerBackground="White" HeightRequest="80" EnablePasswordVisibilityToggle="True"  OutlineCornerRadius="10" >
-                        <Entry TextChanged="Entry_TextChanged_1"/>
-                    </core:SfTextInputLayout>
-                    <Label TextColor="Red" x:Name="newpasslabel" Margin="12,-15,0,0"></Label>
+                <Label FontSize="15" HorizontalOptions="Center" Margin="0,7,10,15" x:Name="validationMsg"></Label>
+                
+                <ur:TextField x:Name="username" Title="Username" AccentColor="#005298"/>
+
+                <ur:TextField x:Name="password" Title="Password" AccentColor="#005298" TextChanged="Entry_TextChanged_2" Margin="0,10,0,0"/>
+
+                <VerticalStackLayout Margin="0,15,0,20">
+                    <ur:TextField x:Name="newpassword" Title="New Password" AccentColor="#005298" TextChanged="Entry_TextChanged_1"/>
+                    <Label TextColor="Red" x:Name="newpasslabel" Margin="10,1,0,0"></Label>
                 </VerticalStackLayout>
-                <VerticalStackLayout>
-                    <core:SfTextInputLayout Hint="Re Enter New Password" EnablePasswordVisibilityToggle="True"
-                                        Stroke="#005298" x:Name="repassword"
-                                        ContainerType="Outlined"
-                                        ContainerBackground="White" HeightRequest="80"  OutlineCornerRadius="10">
-                        <Entry TextChanged="Entry_TextChanged"/>
-                    </core:SfTextInputLayout>
-                    <Label TextColor="Red" x:Name="pwdMatch" Margin="12,-15,0,0"></Label>
+                <VerticalStackLayout Margin="0,-10,0,0">
+                    <ur:TextField x:Name="repassword" Title="Re Enter New Password" AccentColor="#005298" TextChanged="Entry_TextChanged"/>
+                    <Label TextColor="Red" x:Name="pwdMatch" Margin="12,1,0,0"></Label>
                 </VerticalStackLayout>
-                <buttons:SfButton Margin="15" x:Name="resetbtn"
-                WidthRequest="170"
-                Text="Reset Password"
-                TextColor="White"
-                HorizontalOptions="Center"
-                ImageSource="forgot.png"
-                ShowIcon="True" 
-                ImageSize="25"
-                Background="#005298"
-                ImageAlignment="End" Clicked="button_Clicked"  />
+               
+                <Button Text="Reset" Margin="10,20" BackgroundColor="#005298" Clicked="button_Clicked" WidthRequest="300" x:Name="resetbtn"/>
+
             </VerticalStackLayout>
         </StackLayout>
     </ScrollView>

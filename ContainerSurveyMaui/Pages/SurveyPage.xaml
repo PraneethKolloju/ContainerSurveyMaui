@@ -22,20 +22,20 @@
         <ScrollView VerticalScrollBarVisibility="Always">
             <StackLayout>
                 <HorizontalStackLayout BackgroundColor="White" HeightRequest="95">
-                    <Image Source="vedanta_logo" HeightRequest="90" Margin="50,0,0,0" BackgroundColor="Transparent"/>
+                    <Image Source="vedanta_logo" HeightRequest="90" Margin="70,0,0,0" BackgroundColor="Transparent"/>
                 </HorizontalStackLayout>
                 <Label FontSize="25" HorizontalOptions="Center" Margin="0,15,10,4" TextColor="#005298">Survey Entry Details</Label>
-                <Grid Margin="0,20,0,0">
+                <Grid Margin="0,20,0,0" HorizontalOptions="Center">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto" />
                         <ColumnDefinition Width="auto" />
                     </Grid.ColumnDefinitions>
-                    <ur:TextField x:Name="ContainerNo" Title="Search Container no" AccentColor="Black" WidthRequest="230" Margin="65,0,14,0"/>
+                    <ur:TextField x:Name="ContainerNo" Title="Search Container no"  AccentColor="Black" WidthRequest="265" Margin="35,0,10,0"/>
                     <ImageButton Source="search" Margin="0" HeightRequest="30" WidthRequest="30" Clicked="ImageButton_Clicked" Grid.Column="1"/>
                 </Grid>
                 <StackLayout>
                     <ActivityIndicator IsRunning="{Binding IsLoading}" IsVisible="{Binding IsLoading}" Color="#005298"  />
-                    <Label Text="This might take 10 to 15 seconds" IsVisible="{Binding IsLoading}" HorizontalOptions="Center" />
+                    <Label Text="This might take some time" IsVisible="{Binding IsLoading}" HorizontalOptions="Center" />
                 </StackLayout>
                 <VerticalStackLayout Margin="30,30,30,15">
                     <CollectionView ItemsSource="{Binding SurveyData}">
@@ -48,30 +48,47 @@
                                             <Label Text="{Binding port}" />
                                         </HorizontalStackLayout>
                                         <HorizontalStackLayout Spacing="5">
-                                            <Label FontAttributes="Bold" FontSize="15">Yard:</Label>
-                                            <Label Text="{Binding yard}" />
+                                            <VerticalStackLayout>
+                                                <Label FontAttributes="Bold" FontSize="15">Yard:</Label>
+                                                <Label Text="{Binding yard}" LineBreakMode="WordWrap" MaxLines="6"  WidthRequest="300"/>
+                                            </VerticalStackLayout>
                                         </HorizontalStackLayout>
                                         <HorizontalStackLayout Spacing="5">
                                             <Label FontAttributes="Bold" FontSize="15">Container No:</Label>
                                             <Label Text="{Binding container_No}" />
                                         </HorizontalStackLayout>
                                         <HorizontalStackLayout Spacing="5">
-                                            <Label FontAttributes="Bold" FontSize="15">Container Selection:</Label>
-                                            <Label Text="{Binding container_Selection}" />
+                                            <VerticalStackLayout>
+
+                                                <Label FontAttributes="Bold" FontSize="15" >Container Selection:</Label>
+
+                                                <Label Text="{Binding container_Selection}" LineBreakMode="WordWrap" MaxLines="4"/>
+                                            </VerticalStackLayout>
+
                                         </HorizontalStackLayout>
                                         <HorizontalStackLayout Spacing="5">
-                                            <Label FontAttributes="Bold" FontSize="15">Remarks:</Label>
-                                            <Label Text="{Binding remarks}" />
+                                            <VerticalStackLayout>
+                                                <Label FontAttributes="Bold" FontSize="15">Remarks:</Label>
+                                                <Label Text="{Binding remarks}" LineBreakMode="WordWrap" MaxLines="4" WidthRequest="300" />
+                                            </VerticalStackLayout>
                                         </HorizontalStackLayout>
-                                        <HorizontalStackLayout Padding="0,40,0,3">
-                                            <Button Text="Show Attachments" Clicked="Button_Clicked_4" ImageSource="file" BorderColor="Black" BackgroundColor="White" TextColor="#005298" WidthRequest="250" HeightRequest="50" BindingContext="{Binding .}" />
-                                        </HorizontalStackLayout>
-
-                                        <HorizontalStackLayout Padding="0,10">
-                                            <Button Text="Show Location" Clicked="Button_Clicked" ImageSource="location"  BorderColor="Black" BackgroundColor="White" TextColor="#005298" WidthRequest="250" HeightRequest="50" VerticalOptions="Start" BindingContext="{Binding .}" />
-                                        </HorizontalStackLayout>
-
-
+                                        <!--<Frame BackgroundColor="White">
+                                            <HorizontalStackLayout >
+                                                <Image Source="file" WidthRequest="34" HeightRequest="34"/>
+                                                <Button Text="button"/>
+                                            </HorizontalStackLayout>
+                                        </Frame>-->
+                                        <VerticalStackLayout HorizontalOptions="Center">
+                                            <HorizontalStackLayout Padding="0,40,0,3" HorizontalOptions="Start">
+                                                <Button Text="Show Attachments" Clicked="Button_Clicked_4" ImageSource="file" BorderColor="Black" BackgroundColor="White" TextColor="#005298" WidthRequest="250" HeightRequest="50" BindingContext="{Binding .}"/>
+                                            </HorizontalStackLayout>
+                                            <HorizontalStackLayout Padding="0,10">
+                                                <Button Text="Show Geo-Location" Clicked="Button_Clicked"  ImageSource="location" BorderColor="Black" BackgroundColor="White" TextColor="#005298" WidthRequest="250" HeightRequest="50" VerticalOptions="Start" BindingContext="{Binding .}" />
+                                            </HorizontalStackLayout>
+                                            <HorizontalStackLayout Padding="0,10">
+                                                <Button Text="Download Attachments" FontSize="13" Clicked="Image_Download" ImageSource="download"  BorderColor="Black" BackgroundColor="White" TextColor="#005298" WidthRequest="250" HeightRequest="50" VerticalOptions="Start" BindingContext="{Binding .}" />
+                                            </HorizontalStackLayout>
+                                        </VerticalStackLayout>
                                     </StackLayout>
                                 </Frame>
                             </DataTemplate>

@@ -58,40 +58,49 @@ public partial class HomePage : ContentPage
         string password = passwordEntry.Text;
         string role = Role.SelectedItem as String;
 
-        string jsonData = JsonSerializer.Serialize(new
+        if (email == null || phone_number == null || password == null || role == null || email == "" || phone_number == "" || password == "" || role == "")
         {
-            email,
-            password,
-            phone_number,
-            role
-
-        });
-        var requestData = new StringContent(jsonData, Encoding.UTF8, "application/json");
-
-
-        try
+            await DisplayAlert("Error", "All Fields are Required", "Ok");
+            return;
+        }
+        else
         {
-            var token = await _authService.GetToken();
-            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-            var resp = await httpClient.PostAsync("api/Api/Register", requestData);
-            string w = resp.StatusCode.ToString();
-            //DisplayAlert("Alert",w, "OK");
-            if (w == "OK")
+
+            string jsonData = JsonSerializer.Serialize(new
             {
-                await Navigation.PushAsync(new ViewDataPage());
-                await DisplayAlert("Ok", "User Created Successfully", "OK");
-            }
-            else
-                await DisplayAlert("Alert", "Problem while creating User", "OK");
+                email,
+                password,
+                phone_number,
+                role
 
-        }
-        catch (HttpRequestException ex)
-        {
-            await DisplayAlert("Alert", ex.Message, "OK");
-        }
-        catch (Exception ex)
-        {
-            await DisplayAlert("Danger", ex.Message, "Cancel");
+            });
+            var requestData = new StringContent(jsonData, Encoding.UTF8, "application/json");
+
+
+            try
+            {
+                var token = await _authService.GetToken();
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                var resp = await httpClient.PostAsync("api/Api/Register", requestData);
+                string w = resp.StatusCode.ToString();
+                //DisplayAlert("Alert",w, "OK");
+                if (w == "OK")
+                {
+                    await Navigation.PushAsync(new ViewDataPage());
+                    await DisplayAlert("Ok", "User Created Successfully", "OK");
+                }
+                else
+                    await DisplayAlert("Alert", "Problem while creating User", "OK");
+
+            }
+            catch (HttpRequestException ex)
+            {
+                await DisplayAlert("Alert", ex.Message, "OK");
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Danger", ex.Message, "Cancel");
+            }
         }
     }
 

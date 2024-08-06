@@ -4,30 +4,38 @@
              x:Class="ContainerSurveyMaui.Pages.UserEntryPage"
              xmlns:ur="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
              xmlns:uranium="http://schemas.enisn-projects.io/dotnet/maui/uraniumui"
-            
+            xmlns:validation="clr-namespace:InputKit.Shared.Validations;assembly=InputKit.Maui"
+            xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
 
              >
     <ScrollView>
         <VerticalStackLayout>
             <HorizontalStackLayout BackgroundColor="White" HeightRequest="85">
-                <Image Source="vedanta_logo" HeightRequest="90" Margin="30,0,0,0"/>
+                <Image Source="vedanta_logo" HeightRequest="90" Margin="70,0,0,0"/>
             </HorizontalStackLayout>
             <Label FontSize="20" HorizontalOptions="Center" Margin="0,10,0,15" TextColor="#005298">Container Survey Entry</Label>
             <VerticalStackLayout Margin="0,20,0,0">
-                <ur:PickerField Margin="0,5,0,10" Title="Port*" WidthRequest="340" HeightRequest="50" AccentColor="#005298" ItemsSource="{Binding Ports}" x:Name="Port">
+                <ur:PickerField Margin="0,5,0,10" Title="Port*" WidthRequest="340" HeightRequest="50" AccentColor="#005298" ItemsSource="{Binding Ports}" x:Name="Port" SelectedValueChanged="Port_SelectedValueChanged" TextColor="Black">
                 </ur:PickerField>
-                <ur:PickerField Margin="0,5,0,10" Title="Yard*" WidthRequest="340" HeightRequest="50" AccentColor="#005298" ItemsSource="{Binding Yards}" x:Name="Yard">
+                <ur:PickerField Margin="0,5,0,10" Title="Yard*" WidthRequest="340" HeightRequest="50" AccentColor="#005298" ItemsSource="{Binding Yards}" x:Name="Yard" TextColor="Black">
                 </ur:PickerField>
-                <ur:PickerField Margin="0,5,0,10" Title="Shipping Line*" WidthRequest="340" HeightRequest="50" AccentColor="#005298" ItemsSource="{Binding ShippingLines}" x:Name="ShipLine">
+                <ur:PickerField Margin="0,5,0,10" Title="Shipping Line*" WidthRequest="340" HeightRequest="50" AccentColor="#005298" ItemsSource="{Binding ShippingLines}" x:Name="ShipLine" TextColor="Black">
                 </ur:PickerField>
-                <ur:TextField Margin="0,5,0,10"  Title="Container No*" WidthRequest="340" HeightRequest="50" AccentColor="#005298" x:Name="ContainerNo">
+                <ur:TextField Margin="0,5,0,10"  Title="Container No*" WidthRequest="340" HeightRequest="50" AccentColor="#005298" x:Name="ContainerNo" TextColor="Black">
+                    <ur:TextField.Behaviors>
+                        <toolkit:TextValidationBehavior
+                             x:Name="ContainerNoValid"
+                    MinimumLength="1"
+                    Flags="ValidateOnAttaching,ValidateOnValueChanged"
+                    />
+                    </ur:TextField.Behaviors>
                 </ur:TextField>
-                <ur:PickerField Margin="0,5,0,10" Title="Container Selection*" WidthRequest="340" HeightRequest="50" AccentColor="#005298" ItemsSource="{Binding Containers}" x:Name="ContainerSelection">
+                <ur:PickerField Margin="0,5,0,10" Title="Container Selection*" WidthRequest="340" HeightRequest="50" AccentColor="#005298" ItemsSource="{Binding Containers}" x:Name="ContainerSelection" TextColor="Black">
                 </ur:PickerField>
-                    <StackLayout Margin="0,5,0,10">
-                        <Button Text="Attachment 1" Clicked="OnUploadImageClicked1" ImageSource="upload" BorderColor="Black" BackgroundColor="White" TextColor="#005298" WidthRequest="340" HeightRequest="50"/>
-                        <Image x:Name="SelectedImage1" WidthRequest="400" HeightRequest="400" Margin="0,10,0,0" IsVisible="False"/>
-                    </StackLayout>
+                <StackLayout Margin="0,5,0,10">
+                    <Button Text="Attachment 1" Clicked="OnUploadImageClicked1" ImageSource="upload" BorderColor="Black" BackgroundColor="White" TextColor="#005298" WidthRequest="340" HeightRequest="50"/>
+                    <Image x:Name="SelectedImage1" WidthRequest="400" HeightRequest="400" Margin="0,10,0,0" IsVisible="False"/>
+                </StackLayout>
                 <StackLayout Margin="0,5,0,10">
                     <Button Text="Attachment 2" x:Name="imagebtn1" Clicked="OnUploadImageClicked2" ImageSource="upload" BorderColor="Black" BackgroundColor="White" TextColor="#005298" WidthRequest="340" HeightRequest="50"/>
                     <Image  x:Name="SelectedImage2" WidthRequest="400" HeightRequest="400" Margin="0,10,0,0" IsVisible="False"/>
@@ -40,10 +48,32 @@
                     <Button Text="Attachment 4"  Clicked="OnUploadImageClicked4" ImageSource="upload" BorderColor="Black" BackgroundColor="White" TextColor="#005298" WidthRequest="340" HeightRequest="50"/>
                     <Image  x:Name="SelectedImage4" WidthRequest="400" HeightRequest="400" Margin="0,10,0,0" IsVisible="False"/>
                 </StackLayout>
-                <ur:TextField Title="Remarks*"  WidthRequest="340" HeightRequest="50"  AccentColor="#005298" x:Name="Remarks">
+                <ur:TextField Title="Remarks*"  WidthRequest="340" HeightRequest="50"  AccentColor="#005298" x:Name="Remarks" >
+                    <ur:TextField.Behaviors>
+                        <toolkit:TextValidationBehavior
+                            x:Name="RemarksValid"
+MinimumLength="1"
+Flags="ValidateOnAttaching,ValidateOnValueChanged"
+/>
+                    </ur:TextField.Behaviors>
                 </ur:TextField>
-                <Button Text="Submit" Margin="59,20" BackgroundColor="#005298" Clicked="Button_Clicked"/>
 
+                <!--<Grid>
+                    
+                    <Button Text="Submit" Margin="59,20" BackgroundColor="#005298" Clicked="Button_Clicked" IsVisible="{Binding IsBtnBusy}"/>
+                </Grid>-->
+                <Grid>
+                    <Button Text="{Binding SubmitButtonText}" 
+                        Margin="59,20" 
+                        BackgroundColor="#005298" 
+                        Clicked="Button_Clicked" 
+                        IsEnabled="{Binding IsBtnEnabled}"/>
+                    <ActivityIndicator IsRunning="{Binding IsLoaderBusy}" 
+                                   IsVisible="{Binding IsLoaderBusy}" 
+                                   Color="#005298" 
+                                   HorizontalOptions="Center" HeightRequest="35" 
+                                   VerticalOptions="Center"/>
+                </Grid>
             </VerticalStackLayout>
         </VerticalStackLayout>
     </ScrollView>

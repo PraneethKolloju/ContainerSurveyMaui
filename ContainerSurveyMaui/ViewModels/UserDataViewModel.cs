@@ -53,6 +53,7 @@ public class User
     public string? email { get; set; }
     [DisplayName("Password")]
     public string? password { get; set; }
+    [DisplayName("Role")]
     public string? role { get; set; }
 
 }

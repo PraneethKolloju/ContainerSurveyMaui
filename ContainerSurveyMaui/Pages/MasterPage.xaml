@@ -10,8 +10,8 @@
             <Image Source="vedanta_logo" HeightRequest="90" Margin="70,0,0,0"/>
         </HorizontalStackLayout>
         <Label 
-            Text="Routing to Login, Please wait!!!"
+            Text="Redirecting, Please wait!!!"
             VerticalOptions="CenterAndExpand" 
-            HorizontalOptions="CenterAndExpand" />
+            HorizontalOptions="CenterAndExpand" Margin="0,15,0,0" />
     </VerticalStackLayout>
 </ContentPage>

@@ -20,7 +20,7 @@ namespace ContainerSurveyMaui.Services
     {
         
         Task<bool> SurveyEntry(SurveyEntry Data);
-
+        Task<string> GetMasterData(string? name);
 
 
     }
@@ -31,6 +31,7 @@ namespace ContainerSurveyMaui.Services
         public GetPostSevice()
         {
             _httpClient = new HttpClient();
+            _auth = new AuthService();  
         }
 
         public async Task<bool> SurveyEntry(SurveyEntry Data)
@@ -76,6 +77,10 @@ namespace ContainerSurveyMaui.Services
                 if (_httpClient.BaseAddress == null)
                     _httpClient.BaseAddress = new Uri(Constants.Constants.BaseUrl);
 
+                var token = await _auth.GetToken();
+                _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+
+
                 var response = await _httpClient.GetAsync($"/api/Api/SurveyEntry");
                 var data =  response.Content.ReadAsStringAsync().Result;
                 return data;
@@ -93,6 +98,9 @@ namespace ContainerSurveyMaui.Services
             {
                 if (_httpClient.BaseAddress == null)
                     _httpClient.BaseAddress = new Uri(Constants.Constants.BaseUrl);
+
+                var token = await _auth.GetToken();
+                _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
 
                 var response = await _httpClient.GetAsync($"/api/Api/SurveyEntryDetails?id={id}&atch={atch}");
                 var data = response.Content.ReadAsStringAsync().Result;
@@ -115,8 +123,80 @@ namespace ContainerSurveyMaui.Services
 
                 List<Byte[]> imageresult = new List<byte[]>();
 
+                var token = await _auth.GetToken();
+                _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+
                 var response = await _httpClient.GetAsync($"/api/Api/Images?id={id}");
                 var data = response.Content.ReadAsStringAsync().Result;
+                return data;
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+
+        public async Task<string> GetTopSurveyData()
+        {
+            try
+            {
+                if (_httpClient.BaseAddress == null)
+                    _httpClient.BaseAddress = new Uri(Constants.Constants.BaseUrl);
+
+                var token = await _auth.GetToken();
+                _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+
+                var response = await _httpClient.GetAsync($"/api/Api/GetTopSurveyData");
+                var data = response.Content.ReadAsStringAsync().Result;
+                return data;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public async Task<string> GetSurveyDataOnSearch(string name)
+        {
+            try
+            {
+                if (_httpClient.BaseAddress == null)
+                    _httpClient.BaseAddress = new Uri(Constants.Constants.BaseUrl);
+
+                var token = await _auth.GetToken();
+                _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+
+                var response = await _httpClient.GetAsync($"/api/Api/SurveyEntryOnSearch?ContainerNo={name}");
+                var data = response.Content.ReadAsStringAsync().Result;
+                return data;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+
+
+
+
+        public async Task<string> GetMasterData(string? name)
+        {
+            try
+            {
+                if (_httpClient.BaseAddress == null)
+                    _httpClient.BaseAddress = new Uri(Constants.Constants.BaseUrl);
+
+                var token = await _auth.GetToken();
+                _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+
+                var repsonse = await _httpClient.GetAsync($"/api/Api/GetMaster?portName={name}");
+
+                var data = repsonse.Content.ReadAsStringAsync().Result;
+
                 return data;
             }
             catch (Exception ex)

@@ -47,23 +47,32 @@ public partial class ResetPwdPage : ContentPage
         var newPassword = newpassword.Text;
         var rePassword = newpassword.Text;
 
-        if(newPassword== rePassword)
+        if (userName == null || oldPassword == null || newPassword == null || rePassword == null || userName == "" || oldPassword == "" || newPassword == "" || rePassword == "")
         {
-            resetbtn.IsEnabled = true;
-        }else
-        {
-            resetbtn.IsEnabled = false;
-
-        }
-
-        bool result = await _authService.Resetpassword(userName, oldPassword, newPassword);
-        if (result)
-        {
-            await DisplayAlert("Ok", "Password Reset Successfully", "ok");
-            await Navigation.PushAsync(new UserEntryPage());
+            await DisplayAlert("Error", "All Fields are Required", "Ok");
+            return;
         }
         else
-            await DisplayAlert("Alert", "Problem while resetting password", "ok");
+        {
+            if (newPassword == rePassword)
+            {
+                resetbtn.IsEnabled = true;
+            }
+            else
+            {
+                resetbtn.IsEnabled = false;
+
+            }
+
+            bool result = await _authService.Resetpassword(userName, oldPassword, newPassword);
+            if (result)
+            {
+                await DisplayAlert("Ok", "Password Reset Successfully", "ok");
+                await Navigation.PushAsync(new UserEntryPage());
+            }
+            else
+                await DisplayAlert("Alert", "Problem while resetting password", "ok");
+        }
     }
     private void Entry_TextChanged_1(object sender, TextChangedEventArgs e)
     {

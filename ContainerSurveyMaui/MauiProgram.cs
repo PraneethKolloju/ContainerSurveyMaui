@@ -6,6 +6,8 @@ using Plugin.Maui.Biometric;
 using UraniumUI;
 using SkiaSharp;
 using Microsoft.Maui.Controls.Hosting;
+using CommunityToolkit.Maui;
+using CommunityToolkit.Maui.Storage;
 
 
 namespace ContainerSurveyMaui
@@ -16,11 +18,11 @@ namespace ContainerSurveyMaui
         {
             var builder = MauiApp.CreateBuilder();
             builder
+                .UseMauiCommunityToolkit()
                 .UseMauiApp<App>()
                 .UseUraniumUI()
                 .UseMauiMaps()
                 .UseUraniumUIMaterial()
-            .ConfigureSyncfusionCore()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("Georama-Light.tff", "GeoramaLight");
@@ -43,6 +45,7 @@ namespace ContainerSurveyMaui
 
             builder.Services.AddTransient<LoginPage>();
             builder.Services.AddTransient<HomePage>();
+            builder.Services.AddSingleton<IFileSaver>(FileSaver.Default);
 
             return builder.Build();
         }
