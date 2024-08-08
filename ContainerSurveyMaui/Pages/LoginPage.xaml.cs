@@ -12,6 +12,7 @@ public partial class LoginPage : ContentPage
     public LoginPage()
     {
         InitializeComponent();
+        SecureStorage.SetAsync("isLoggedIn", "notok");
         _authService = new AuthService();
 
     }
@@ -54,6 +55,7 @@ public partial class LoginPage : ContentPage
 
                 if (result)
                 {
+                    SecureStorage.SetAsync("isLoggedIn","ok");
                     ActivityIndicator activityIndicator = new ActivityIndicator { IsRunning = true };
                     Application.Current.MainPage = new NavigationPage(new AppShell());
                 }
@@ -100,5 +102,11 @@ public partial class LoginPage : ContentPage
     protected override bool OnBackButtonPressed()
     {
         return true;
+    }
+
+    private async void Button_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new ResetPwdPage());
+
     }
 }

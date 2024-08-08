@@ -30,8 +30,8 @@
                 </HorizontalStackLayout>
                 <Label FontSize="25" HorizontalOptions="Center" Margin="0,15,10,10" TextColor="#005298">Survey Entry Details</Label>
                 <Button Text="show filters" Clicked="Button_Clicked_1"  WidthRequest="200" x:Name="showhidefitlers" ImageSource="setting" BorderColor="Black" BackgroundColor="White" TextColor="Black"/>
-                <StackLayout x:Name="SearchFilters" IsVisible="False">
-                    <Grid Margin="0,1,0,5" HorizontalOptions="Center">
+                <StackLayout x:Name="SearchFilters" IsVisible="False" Margin="0,0,0,5">
+                    <Grid Margin="0,10,0,5" HorizontalOptions="Center">
                         <ur:TextField x:Name="Port" Title="Enter Port"  AccentColor="Black" WidthRequest="300" Margin="35,0,10,0" />
                     </Grid>
                     <Grid Margin="0,1,0,5" HorizontalOptions="Center">
@@ -40,14 +40,13 @@
                     <Grid Margin="0,1,0,5" HorizontalOptions="Center">
                         <ur:TextField x:Name="ShippingLine" Title="Enter Shipping Line"  AccentColor="Black" WidthRequest="300" Margin="35,0,10,0" />
                     </Grid>
-                    <Grid Margin="0,10,0,5" HorizontalOptions="Center">
+                    <Grid Margin="0,1,0,5" HorizontalOptions="Center">
                         <ur:TextField x:Name="ContainerNo" Title="Enter Container no"  AccentColor="Black" WidthRequest="300" Margin="35,0,10,0" />
                     </Grid>
                     <Grid Margin="0,1,0,10" HorizontalOptions="Center">
                         <ur:DatePickerField x:Name="DateSelected" Title="Select Date"  AccentColor="Black" WidthRequest="300" Margin="35,0,10,0" />
                     </Grid>
                     <Button Text="Search" Clicked="ImageButton_Clicked" ImageSource="searchno" BorderColor="Black" BackgroundColor="White" TextColor="Black" WidthRequest="200" />
-
                 </StackLayout>
                 <StackLayout>
                     <ActivityIndicator IsRunning="{Binding IsLoading}" IsVisible="{Binding IsLoading}" Color="#005298"  />

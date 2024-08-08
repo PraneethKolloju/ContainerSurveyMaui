@@ -45,7 +45,7 @@ public partial class ResetPwdPage : ContentPage
         var userName = username.Text;
         var oldPassword = password.Text;
         var newPassword = newpassword.Text;
-        var rePassword = newpassword.Text;
+        var rePassword = repassword.Text;
 
         if (userName == null || oldPassword == null || newPassword == null || rePassword == null || userName == "" || oldPassword == "" || newPassword == "" || rePassword == "")
         {
@@ -68,7 +68,12 @@ public partial class ResetPwdPage : ContentPage
             if (result)
             {
                 await DisplayAlert("Ok", "Password Reset Successfully", "ok");
-                await Navigation.PushAsync(new UserEntryPage());
+                var LoggedIn=await SecureStorage.GetAsync("isLoggedIn");
+                if(LoggedIn == "ok")
+                    await Navigation.PushAsync(new UserEntryPage());
+                else
+                    await Navigation.PushAsync(new LoginPage());
+
             }
             else
                 await DisplayAlert("Alert", "Problem while resetting password", "ok");

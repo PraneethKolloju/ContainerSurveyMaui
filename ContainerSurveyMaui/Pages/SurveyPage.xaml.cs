@@ -76,16 +76,7 @@ public partial class SurveyPage : ContentPage
         var searchedPort = Port.Text;
         var searchedShippingLine= ShippingLine.Text;
 
-        if (searchedNo == null)
-        {
-            await DisplayAlert("Warning", "Select Container No", "OK");
-            return;
-        }
-        if (searchedDate == null)
-        {
-            await DisplayAlert("Warning", "Select Date", "OK");
-            return;
-        }
+        
 
         Preferences.Set("searchedItem", searchedNo);
         Preferences.Set("searchedDateData", searchedDate.ToString());
