@@ -71,8 +71,25 @@ public partial class SurveyPage : ContentPage
     private async void ImageButton_Clicked(object sender, EventArgs e)
     {
         var searchedNo = ContainerNo.Text;
+        var searchedDate = DateSelected.Date.ToString();
+        var searchedYard = Yard.Text;
+        var searchedPort = Port.Text;
+        var searchedShippingLine= ShippingLine.Text;
+
+        if (searchedNo == null)
+        {
+            await DisplayAlert("Warning", "Select Container No", "OK");
+            return;
+        }
+        if (searchedDate == null)
+        {
+            await DisplayAlert("Warning", "Select Date", "OK");
+            return;
+        }
+
         Preferences.Set("searchedItem", searchedNo);
-        viewModel.LoadSurveySearchDataAsync(searchedNo);
+        Preferences.Set("searchedDateData", searchedDate.ToString());
+        viewModel.LoadSurveySearchDataAsync(searchedNo,searchedDate,searchedPort,searchedYard,searchedShippingLine);
     }
 
     private async void Image_Download(object sender, EventArgs e)
@@ -163,6 +180,18 @@ public partial class SurveyPage : ContentPage
         }
     }
 
+    private void Button_Clicked_1(object sender, EventArgs e)
+    {
+        SearchFilters.IsVisible = !SearchFilters.IsVisible;
+        if (SearchFilters.IsVisible)
+        {
+            showhidefitlers.Text = "Hide Filters";
+        }
+        else
+        {
+            showhidefitlers.Text = "Show Filters";
+        }
+    }
 }
 
 

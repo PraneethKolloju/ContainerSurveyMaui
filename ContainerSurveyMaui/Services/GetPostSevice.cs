@@ -158,17 +158,15 @@ namespace ContainerSurveyMaui.Services
             }
         }
 
-        public async Task<string> GetSurveyDataOnSearch(string name)
+        public async Task<string> GetSurveyDataOnSearch(string name,string Date,string port,string yard,string shippingline)
         {
             try
             {
                 if (_httpClient.BaseAddress == null)
                     _httpClient.BaseAddress = new Uri(Constants.Constants.BaseUrl);
-
                 var token = await _auth.GetToken();
                 _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
-
-                var response = await _httpClient.GetAsync($"/api/Api/SurveyEntryOnSearch?ContainerNo={name}");
+                var response = await _httpClient.GetAsync($"/api/Api/SurveyEntryOnSearch?ContainerNo={name}&Date={Date}&port={port}&yard={yard}&shippingLine={shippingline}");
                 var data = response.Content.ReadAsStringAsync().Result;
                 return data;
             }

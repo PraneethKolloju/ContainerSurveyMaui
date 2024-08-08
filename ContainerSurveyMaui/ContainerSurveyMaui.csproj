@@ -61,14 +61,19 @@
 
 
 	<ItemGroup>
+	  <None Remove="Resources\Images\adduser.png" />
 	  <None Remove="Resources\Images\arrowright.png" />
+	  <None Remove="Resources\Images\calendar.png" />
 	  <None Remove="Resources\Images\download.png" />
 	  <None Remove="Resources\Images\file.png" />
+	  <None Remove="Resources\Images\filter.png" />
 	  <None Remove="Resources\Images\forgot.png" />
 	  <None Remove="Resources\Images\List.png" />
 	  <None Remove="Resources\Images\location.png" />
 	  <None Remove="Resources\Images\logout.png" />
 	  <None Remove="Resources\Images\search.png" />
+	  <None Remove="Resources\Images\searchNo.png" />
+	  <None Remove="Resources\Images\setting.png" />
 	  <None Remove="Resources\Images\upload.png" />
 	</ItemGroup>
 

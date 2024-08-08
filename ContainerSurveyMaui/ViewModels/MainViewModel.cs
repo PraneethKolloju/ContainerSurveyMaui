@@ -22,6 +22,13 @@ namespace ContainerSurveyMaui.ViewModels
             set => SetProperty(ref _isLoading, value);
         }
 
+        private bool _isSearchLoading;
+        public bool isSearchLoading
+        {
+            get => _isSearchLoading;
+            set => SetProperty(ref _isSearchLoading, value);
+        }
+
         public SurveyEntry SelectedSurveyEntry
         {
             get => _selectedSurveyEntry;
@@ -79,11 +86,12 @@ namespace ContainerSurveyMaui.ViewModels
             }
         }
 
-        public async void LoadSurveySearchDataAsync(string CNo)
+        public async void LoadSurveySearchDataAsync(string CNo,string CDate,string CPort,string CYard,string CShippingLine)
         {
+            IsLoading = true;
             try
             {
-                var result = await _getpostservice.GetSurveyDataOnSearch(CNo);
+                var result = await _getpostservice.GetSurveyDataOnSearch(CNo,CDate,CPort,CYard,CShippingLine);
                 var data = JsonSerializer.Deserialize<List<SurveyEntry>>(result);
                 SurveyData.Clear();
 

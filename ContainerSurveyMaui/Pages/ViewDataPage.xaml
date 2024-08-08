@@ -27,19 +27,50 @@ xmlns:cards="clr-namespace:Syncfusion.Maui.Cards;assembly=Syncfusion.Maui.Cards"
         <vm:UserDataViewModel/>
     </ContentPage.BindingContext>
 
-    <StackLayout Margin="1" Loaded="TableView_Loaded">
-        <HorizontalStackLayout BackgroundColor="White" HeightRequest="85">
-            <Image Source="vedanta_logo" HeightRequest="90" Margin="70,0,0,0"/>
-        </HorizontalStackLayout>
-        <Button StyleClass="OutlinedButton"  WidthRequest="300" Text="Create New User" Margin="10" TextColor="#005298" BorderColor="#005298" Clicked="Button_Clicked"/>
+    <ScrollView>
+        <StackLayout Margin="1" Loaded="TableView_Loaded">
+            <HorizontalStackLayout BackgroundColor="White" HeightRequest="85">
+                <Image Source="vedanta_logo" HeightRequest="90" Margin="70,0,0,0"/>
+            </HorizontalStackLayout>
+            <HorizontalStackLayout Margin="0,30,0,0">
+                <Label FontSize="25" HorizontalOptions="Center" Margin="110,0,0,0" TextColor="#005298">User Details</Label>
+                <ImageButton Source="adduser" HeightRequest="40" Margin="-190,0,0,0" Clicked="Button_Clicked"></ImageButton>
+            </HorizontalStackLayout>
 
-        <ScrollView Orientation="Both" HorizontalScrollBarVisibility="Default" VerticalScrollBarVisibility="Default">
-            <!--<ur:DataGrid ItemsSource="{Binding userData}" UseAutoColumns="True" Background="White" Margin="20"  WidthRequest="400" HeightRequest="500">
-            </ur:DataGrid>-->
-            <!--<ur:DataGrid Margin="30" x:Name="dataGrid"  ItemsSource="{Binding userData}" WidthRequest="400" ></ur:DataGrid>-->
-            <ur:DataGrid ItemsSource="{Binding userData}" UseAutoColumns="True" Margin="30" />
+            <ActivityIndicator IsRunning="{Binding IsLoading}" IsVisible="{Binding IsLoading}" Color="#005298"  />
+            <VerticalStackLayout Margin="30,30,30,15">
+                <CollectionView ItemsSource="{Binding userData}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame BorderColor="#005298" Margin="0,0,0,16"  BackgroundColor="Transparent" HasShadow="True" CornerRadius="6" WidthRequest="300" HorizontalOptions="Center" >
+                                <StackLayout Margin="0,10,0,0">
+                                    <VerticalStackLayout>
+                                        <HorizontalStackLayout Spacing="5">
+                                            <Label FontAttributes="Bold" FontSize="15">UserName:</Label>
+                                            <Label Text="{Binding email}" />
+                                        </HorizontalStackLayout>
+                                        <HorizontalStackLayout Spacing="5">
+                                            <Label FontAttributes="Bold" FontSize="15">Phone Number:</Label>
+                                            <Label Text="{Binding phone_number}"/>
+                                        </HorizontalStackLayout>
+                                        <HorizontalStackLayout Spacing="5">
+                                            <Label FontAttributes="Bold" FontSize="15">Password:</Label>
+                                            <Label Text="{Binding password}" />
+                                        </HorizontalStackLayout>
+                                        <HorizontalStackLayout Spacing="5">
+                                                <Label FontAttributes="Bold" FontSize="15" >Role:</Label>
+                                                <Label Text="{Binding role}" LineBreakMode="WordWrap" MaxLines="4"/>
+                                        </HorizontalStackLayout>
+                                    </VerticalStackLayout>
+                                </StackLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
 
-        </ScrollView>
-    </StackLayout>
+            </VerticalStackLayout>
+        </StackLayout>
+    </ScrollView>
+
 
 </ContentPage>

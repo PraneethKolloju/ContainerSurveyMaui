@@ -12,10 +12,18 @@ public class UserDataViewModel : BaseViewModel
 	public ObservableCollection<User> userData { get; set; }    
     private readonly AuthService _authService;
 
+    private bool _isLoading;
+    public bool IsLoading
+    {
+        get => _isLoading;
+        set => SetProperty(ref _isLoading, value);
+    }
+
     public UserDataViewModel()
 	{
 
 		_authService = new AuthService();
+        IsLoading = true;
         userData = new ObservableCollection<User>();
         LoadDataAsync();
 
@@ -39,6 +47,11 @@ public class UserDataViewModel : BaseViewModel
         {
 
             throw;
+        }
+        finally
+        {
+            IsLoading = false;
+
         }
 
 
