@@ -55,8 +55,10 @@ namespace ContainerSurveyMaui
                     SurveyPage.IsVisible = true;
                     AdminPage.IsVisible = true;
                     MasterPage.IsVisible = true;
-
-
+                }
+                else
+                {
+                    MasterPage.IsVisible = false;
                 }
 
             }

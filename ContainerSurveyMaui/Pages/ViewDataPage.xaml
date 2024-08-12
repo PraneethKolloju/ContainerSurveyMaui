@@ -32,12 +32,22 @@ xmlns:cards="clr-namespace:Syncfusion.Maui.Cards;assembly=Syncfusion.Maui.Cards"
             <HorizontalStackLayout BackgroundColor="White" HeightRequest="85">
                 <Image Source="vedanta_logo" HeightRequest="90" Margin="70,0,0,0"/>
             </HorizontalStackLayout>
-            <HorizontalStackLayout Margin="0,30,0,0">
+            <HorizontalStackLayout Margin="0,30,0,10">
                 <Label FontSize="25" HorizontalOptions="Center" Margin="110,0,0,0" TextColor="#005298">User Details</Label>
-                <ImageButton Source="adduser" HeightRequest="40" Margin="-190,0,0,0" Clicked="Button_Clicked"></ImageButton>
+                <ImageButton Source="adduser" HeightRequest="35" Margin="-190,0,0,0" Clicked="Button_Clicked"></ImageButton>
             </HorizontalStackLayout>
-
+            <Button Text="Show Filters" Clicked="showhidefitlers_Clicked"  WidthRequest="200" x:Name="showhidefitlers" ImageSource="setting" BorderColor="Black" BackgroundColor="White" TextColor="Black"/>
+            <StackLayout x:Name="SearchFilters" IsVisible="False" Margin="0,0,0,5">
+                <Grid Margin="0,10,0,5" HorizontalOptions="Center">
+                    <ur:TextField x:Name="username" Title="Enter User Name"  AccentColor="Black" WidthRequest="300" Margin="35,0,10,0" />
+                </Grid>
+                <Grid Margin="0,1,0,5" HorizontalOptions="Center">
+                    <ur:TextField x:Name="role" Title="Enter Role"  AccentColor="Black" WidthRequest="300" Margin="35,0,10,0" />
+                </Grid>
+                <Button Text="Search" Clicked="Button_Clicked_2" ImageSource="searchnowhite" HorizontalOptions="Center" BackgroundColor="#005298" CornerRadius="20" WidthRequest="200" />
+            </StackLayout>
             <ActivityIndicator IsRunning="{Binding IsLoading}" IsVisible="{Binding IsLoading}" Color="#005298"  />
+            
             <VerticalStackLayout Margin="30,30,30,15">
                 <CollectionView ItemsSource="{Binding userData}">
                     <CollectionView.ItemTemplate>

@@ -73,6 +73,7 @@
 	  <None Remove="Resources\Images\logout.png" />
 	  <None Remove="Resources\Images\search.png" />
 	  <None Remove="Resources\Images\searchNo.png" />
+	  <None Remove="Resources\Images\searchnowhite.png" />
 	  <None Remove="Resources\Images\setting.png" />
 	  <None Remove="Resources\Images\upload.png" />
 	</ItemGroup>

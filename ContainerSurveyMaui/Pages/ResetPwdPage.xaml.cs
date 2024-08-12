@@ -68,9 +68,16 @@ public partial class ResetPwdPage : ContentPage
             if (result)
             {
                 await DisplayAlert("Ok", "Password Reset Successfully", "ok");
-                var LoggedIn=await SecureStorage.GetAsync("isLoggedIn");
-                if(LoggedIn == "ok")
-                    await Navigation.PushAsync(new UserEntryPage());
+                var LoggedIn = await SecureStorage.GetAsync("isLoggedIn");
+                if (LoggedIn == "ok")
+                {
+                    var Role = await SecureStorage.GetAsync("Role");
+                    if (Role == "Admin")
+                        await Navigation.PushAsync(new SurveyPage());
+                    else
+                        await Navigation.PushAsync(new UserEntryPage());
+
+                }
                 else
                     await Navigation.PushAsync(new LoginPage());
 

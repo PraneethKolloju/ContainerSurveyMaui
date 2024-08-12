@@ -443,13 +443,23 @@ public partial class UserEntryPage : ContentPage
 
             if (Port.SelectedIndex == -1 || Yard.SelectedIndex == -1 || ShipLine.SelectedIndex == -1 || ContainerSelection.SelectedIndex == -1 || ContainerNoValid.IsNotValid || RemarksValid.IsNotValid)
             {
-                await DisplayAlert("Error", "All Fields are Required\n*Atleast 3 attachments are required", "Ok");
+                await DisplayAlert("Error", "Enter Required Fields", "Ok");
                 return;
             }
-            if (imagesCount < 3)
+            if (ContainerSelection.SelectedIndex == 0)
             {
-                await DisplayAlert("Error", "Atleast 3 attachments are required", "Ok");
-                return;
+                if (imagesCount < 3)
+                {
+                    await DisplayAlert("Error", "Atleast 3 attachments are required", "Ok");
+                    return;
+                }
+            }
+            else if (ContainerSelection.SelectedIndex == 1 || ContainerSelection.SelectedIndex == 2)
+            {
+                if(imagesCount < 1) {
+                    await DisplayAlert("Error", "Atleast 1 attachment is required", "Ok");
+                    return;
+                }
             }
             else
             {

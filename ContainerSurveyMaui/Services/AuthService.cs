@@ -18,8 +18,8 @@ namespace ContainerSurveyMaui.Services
     {
         Task<bool> LoginApi(string username, string password);
         Task<String> GetToken();
-        Task<string> GetUserInfo();
         Task<bool> Resetpassword(string username, string oldpassword, string newpassword);
+        Task<string> GetUserInfo(string name, string role);
     }
 
     class AuthService:IAuthService
@@ -98,7 +98,7 @@ namespace ContainerSurveyMaui.Services
             }
         }
 
-        public async Task<string> GetUserInfo()
+        public async Task<string> GetUserInfo(string name,string role)
         {
             try
             {
@@ -106,7 +106,8 @@ namespace ContainerSurveyMaui.Services
                     _httpClient.BaseAddress = new Uri(Constants.Constants.BaseUrl);
                 string token = await GetToken();
                 _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
-                var response = await _httpClient.GetAsync("/api/Api/UserInfo");
+               
+                var response = await _httpClient.GetAsync($"/api/Api/UserInfo?name={name}&role={role}");
                 var strResponse = await response.Content.ReadAsStringAsync();
                 //var data = JsonSerializer.Deserialize<List<userDetails>>(strResponse);
                 return strResponse;

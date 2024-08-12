@@ -9,9 +9,18 @@
         <HorizontalStackLayout BackgroundColor="White" HeightRequest="85">
             <Image Source="vedanta_logo" HeightRequest="90" Margin="70,0,0,0"/>
         </HorizontalStackLayout>
+
         <Label 
             Text="Redirecting, Please wait!!!"
             VerticalOptions="CenterAndExpand" 
             HorizontalOptions="CenterAndExpand" Margin="0,15,0,0" />
+        <ActivityIndicator IsRunning="True" Margin="0,40,0,0"
+                     VerticalOptions="Center"
+                     HorizontalOptions="Center"  
+                     BackgroundColor="Transparent"
+                     Color="#005298"
+        />
+
+
     </VerticalStackLayout>
 </ContentPage>
