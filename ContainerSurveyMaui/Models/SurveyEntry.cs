@@ -13,6 +13,8 @@ namespace ContainerSurveyMaui.Models
         public string? location { get; set; }
         public string? shipping_line { get; set; }
         public string container_Selection { get; set; }
+        public string? imei_no { get; set; }
+
         public string remarks { get; set; }
         private byte[] _attachment_1;
         private byte[] _attachment_2;

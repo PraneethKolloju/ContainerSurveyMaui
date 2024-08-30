@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ContainerSurveyMaui.Constants
+namespace DeviceDetails
 {
-    public class Constants
+    public partial class GetDeviceInfo
     {
-        public const string BaseUrl = "http://192.168.0.91:5091";
+        public partial string GetDeviceID();
     }
 }

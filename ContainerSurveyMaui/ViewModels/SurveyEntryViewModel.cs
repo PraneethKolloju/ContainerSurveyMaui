@@ -12,22 +12,16 @@ using System.Threading.Tasks;
 
 namespace ContainerSurveyMaui.ViewModels
 {
-
     public class SurveyEntryViewModel:BaseViewModel
     {
         public ObservableCollection<SurveyEntry> SurveyData { get; set; }
         private readonly GetPostSevice _getpostservice;
 
-        
-
         public SurveyEntryViewModel()
-
         {
             _getpostservice= new GetPostSevice();
             SurveyData= new ObservableCollection<SurveyEntry>();
-
             LoadDataAsync();
-
         }
 
         private async void LoadDataAsync()

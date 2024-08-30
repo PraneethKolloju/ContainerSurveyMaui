@@ -123,10 +123,19 @@ public partial class UserEntryPage : ContentPage
     }
 
 
-    protected override void OnAppearing()
+    protected async override void OnAppearing()
     {
         base.OnAppearing();
         MasterDataLoad();
+        var firsttime = await SecureStorage.GetAsync("firsttime_user");
+        if (firsttime == "1")
+        {
+            //await Task.Delay(3000);
+            await DisplayAlert("Alert", "You're a New User, Reset the password", "OK");
+
+            await Navigation.PushAsync(new ResetPwdPage());
+
+        }
 
     }
 
@@ -443,7 +452,7 @@ public partial class UserEntryPage : ContentPage
 
             if (Port.SelectedIndex == -1 || Yard.SelectedIndex == -1 || ShipLine.SelectedIndex == -1 || ContainerSelection.SelectedIndex == -1 || ContainerNoValid.IsNotValid || RemarksValid.IsNotValid)
             {
-                await DisplayAlert("Error", "Enter Required Fields", "Ok");
+                await DisplayAlert("Error", "Enter All Required Fields", "Ok");
                 return;
             }
             if (ContainerSelection.SelectedIndex == 0)
@@ -456,42 +465,42 @@ public partial class UserEntryPage : ContentPage
             }
             else if (ContainerSelection.SelectedIndex == 1 || ContainerSelection.SelectedIndex == 2)
             {
-                if(imagesCount < 1) {
+                if (imagesCount < 1)
+                {
                     await DisplayAlert("Error", "Atleast 1 attachment is required", "Ok");
                     return;
                 }
             }
-            else
+
+            var location = await Geolocation.GetLocationAsync();
+
+            var resultlocation = location.Latitude.ToString() + "," + location.Longitude.ToString();
+
+            var result = _getPostService.SurveyEntry(new SurveyEntry
             {
-                var location = await Geolocation.GetLocationAsync();
+                port = Port.SelectedItem as String,
+                yard = Yard.SelectedItem as String,
+                shipping_line = ShipLine.SelectedItem as String,
+                container_No = ContainerNo.Text as String,
+                container_Selection = ContainerSelection.SelectedItem as String,
+                attachment_1 = imageByte1,
+                attachment_2 = imageByte2,
+                attachment_3 = imageByte3,
+                attachment_4 = imageByte4,
+                remarks = Remarks.Text,
+                location = resultlocation
+            });
 
-                var resultlocation = location.Latitude.ToString() + "," + location.Longitude.ToString();
+            //await Task.Delay(2000);
+            await DisplayAlert("Alert", "Data Saved Successfully", "OK");
 
-                var result = _getPostService.SurveyEntry(new SurveyEntry
-                {
-                    port = Port.SelectedItem as String,
-                    yard = Yard.SelectedItem as String,
-                    shipping_line = ShipLine.SelectedItem as String,
-                    container_No = ContainerNo.Text as String,
-                    container_Selection = ContainerSelection.SelectedItem as String,
-                    attachment_1 = imageByte1,
-                    attachment_2 = imageByte2,
-                    attachment_3 = imageByte3,
-                    attachment_4 = imageByte4,
-                    remarks = Remarks.Text,
-                    location = resultlocation
-                });
+            await Navigation.PushAsync(new UserEntryPage());
 
-                //await Task.Delay(2000);
-                await DisplayAlert("Alert", "Data Saved Successfully", "OK");
-
-                await Navigation.PushAsync(new UserEntryPage());
-            }
         }
         catch (Exception ex)
         {
-
-            throw;
+            await DisplayAlert("Alert",ex.Message, "OK");
+            return;
         }
         finally
         {
@@ -513,7 +522,7 @@ public partial class UserEntryPage : ContentPage
         var selectedIndex = -2;
         if (sender is PickerField pickerField)
         {
-            if(pickerField.SelectedItem!=null)
+            if (pickerField.SelectedItem != null)
                 selectedValue = pickerField.SelectedItem.ToString() ?? "";
             selectedIndex = pickerField.SelectedIndex;
         }

@@ -22,19 +22,25 @@ public partial class SurveyPage : ContentPage
         BindingContext = viewModel;
     }
 
-    protected override void OnAppearing()
+    protected async override void OnAppearing()
     {
         base.OnAppearing();
+        await Task.Delay(500);
         viewModel = new MainViewModel();
         BindingContext = viewModel;
+        var firsttime = await SecureStorage.GetAsync("firsttime_user");
+        if (firsttime == "1")
+        {
+            await Task.Delay(3000);
+            await DisplayAlert("Alert", "You're a New User, Reset the password", "OK");
+
+            await Navigation.PushAsync(new ResetPwdPage());
+
+        }
+
+
 
     }
-
-    protected override bool OnBackButtonPressed()
-    {
-        return true;
-    }
-
 
 
     private async void Button_Clicked_4(object sender, EventArgs e)
@@ -48,7 +54,7 @@ public partial class SurveyPage : ContentPage
 
         if (i == null)
         {
-            await DisplayAlert("OK", "No Attachment Found", "cancel");
+            await DisplayAlert("Alert", "No Attachment Found", "OK");
         }
         else
         {
@@ -85,16 +91,23 @@ public partial class SurveyPage : ContentPage
 
     private async void Image_Download(object sender, EventArgs e)
     {
-        var button = sender as Button;
-        if (button == null) return;
+        try
+        {
+            var button = sender as Button;
+            if (button == null) return;
 
-        var surveyEntry = button.BindingContext as SurveyEntry;
-        if (surveyEntry == null) return;
-        int i = surveyEntry.id.Value;
-        var res = await _getpostservice.GetImages(i);
-        var data = JsonSerializer.Deserialize<List<SurveyDetails>>(res);
-        await SaveAttachments(data[0]);
-
+            var surveyEntry = button.BindingContext as SurveyEntry;
+            if (surveyEntry == null) return;
+            int i = surveyEntry.id.Value;
+            var res = await _getpostservice.GetImages(i);
+            var data = JsonSerializer.Deserialize<List<SurveyDetails>>(res);
+            await SaveAttachments(data[0]);
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Alert", ex.Message, "OK");
+            return;
+        }
     }
 
     private async Task SaveAttachments(SurveyDetails imageData)
@@ -182,6 +195,18 @@ public partial class SurveyPage : ContentPage
         {
             showhidefitlers.Text = "Show Filters";
         }
+    }
+
+    private async void Button_Clicked_2(object sender, EventArgs e)
+    {
+        var CurrentPage = (Microsoft.Maui.Controls.Page)Microsoft.Maui.Controls.Application.Current.MainPage.Navigation.NavigationStack.LastOrDefault();
+
+        await CurrentPage.FadeOut();
+
+                    await Navigation.PushAsync(new PortDetailsPage());
+
+        await CurrentPage.FadeOut();
+
     }
 }
 

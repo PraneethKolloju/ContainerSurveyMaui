@@ -11,19 +11,24 @@ public partial class ViewDataPage : ContentPage
     private readonly AuthService _authService;
     private UserDataViewModel viewModel;
 
+    protected async override void OnAppearing()
+    {
+        base.OnAppearing();
+        await Task.Delay(500);
+        viewModel = new UserDataViewModel();
+        BindingContext = viewModel;
 
+    }
     public ViewDataPage()
     {
         InitializeComponent();
         _authService = new AuthService();
         viewModel = new UserDataViewModel();
         BindingContext = viewModel;
-
     }
     private async void Button_Clicked_1(object sender, EventArgs e)
     {
         await Navigation.PushAsync(new HomePage());
-
     }
     
     private async void TableView_Loaded(object sender, EventArgs e)
@@ -63,5 +68,28 @@ public partial class ViewDataPage : ContentPage
         {
             showhidefitlers.Text = "Show Filters";
         }
+    }
+
+    private async void Button_Clicked_3(object sender, EventArgs e)
+    {
+        var button = sender as Button;
+        if (button == null) return;
+
+        var userEntry = button.BindingContext as User;
+        if (userEntry == null) return;
+        int resetId = userEntry.userId;
+        var isSuccessful=await _authService.ResetDevice(resetId);
+        if(isSuccessful)
+        {
+            await DisplayAlert("Alert", "Reset Successful", "OK");
+        }
+        else {
+            await DisplayAlert("Alert", "Problem while resetting", "OK");
+        }
+
+    }
+    protected override bool OnBackButtonPressed()
+    {
+        return true;
     }
 }

@@ -6,15 +6,24 @@
              xmlns:uranium="http://schemas.enisn-projects.io/dotnet/maui/uraniumui"
             xmlns:validation="clr-namespace:InputKit.Shared.Validations;assembly=InputKit.Maui"
             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-
+ NavigationPage.HasNavigationBar="False"
              >
     <ScrollView>
-        <VerticalStackLayout>
-            <HorizontalStackLayout BackgroundColor="White" HeightRequest="85">
-                <Image Source="vedanta_logo" HeightRequest="90" Margin="70,0,0,0"/>
-            </HorizontalStackLayout>
-            <Label FontSize="20" HorizontalOptions="Center" Margin="0,10,0,15" TextColor="#005298">Container Survey Entry</Label>
-            <VerticalStackLayout Margin="0,20,0,0">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                
+            </Grid.RowDefinitions>
+         
+            <Frame BackgroundColor="White" BorderColor="White" HasShadow="False" Grid.Row="0">
+                <HorizontalStackLayout BackgroundColor="Transparent" HeightRequest="55" HorizontalOptions="Center" VerticalOptions="Center" >
+                    <Image Source="vedanta_logo" HeightRequest="85"/>
+                </HorizontalStackLayout>
+            </Frame>
+            <Label FontSize="20" HorizontalOptions="Center" Margin="0,10,0,15" TextColor="#005298" Grid.Row="1">Container Survey Entry</Label>
+            <VerticalStackLayout Margin="0,20,0,0" Grid.Row="2">
                 <ur:PickerField Margin="0,5,0,10" Title="Port*" WidthRequest="340" HeightRequest="50" AccentColor="#005298" ItemsSource="{Binding Ports}" x:Name="Port" SelectedValueChanged="Port_SelectedValueChanged" TextColor="Black">
                 </ur:PickerField>
                 <ur:PickerField Margin="0,5,0,10" Title="Yard*" WidthRequest="340" HeightRequest="50" AccentColor="#005298" ItemsSource="{Binding Yards}" x:Name="Yard" TextColor="Black">
@@ -75,6 +84,6 @@ Flags="ValidateOnAttaching,ValidateOnValueChanged"
                                    VerticalOptions="Center"/>
                 </Grid>
             </VerticalStackLayout>
-        </VerticalStackLayout>
+        </Grid>
     </ScrollView>
 </ContentPage>

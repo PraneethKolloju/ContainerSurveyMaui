@@ -22,6 +22,17 @@ namespace ContainerSurveyMaui.Services
         Task<bool> SurveyEntry(SurveyEntry Data);
         Task<string> GetMasterData(string? name);
 
+        Task<string> NewPortEntry(NewPortEntry NewPortData);
+
+
+
+    }
+    public class NewPortEntry
+    {
+        public string Port { get; set; }
+        public string Yard { get; set; }
+        public string ShippingLine { get; set; }
+        public string loggedInName { get; set; }
 
     }
     public class GetPostSevice :IGetPostService
@@ -177,10 +188,6 @@ namespace ContainerSurveyMaui.Services
             }
         }
 
-
-
-
-
         public async Task<string> GetMasterData(string? name)
         {
             try
@@ -203,5 +210,34 @@ namespace ContainerSurveyMaui.Services
                 throw;
             }
         }
+
+        public async Task<string> NewPortEntry(NewPortEntry NewPortData)
+        {
+            if(_httpClient.BaseAddress== null)
+                _httpClient.BaseAddress= new Uri(Constants.Constants.BaseUrl);  
+
+
+            string jsonData= System.Text.Json.JsonSerializer.Serialize(new {
+                NewPortData.Port,
+                NewPortData.Yard,
+                NewPortData.ShippingLine,
+                NewPortData.loggedInName,
+            });
+
+            var requestData = new StringContent(jsonData, Encoding.UTF8, "application/json");
+            var token= await _auth.GetToken();  
+            _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+
+            var response = await _httpClient.PostAsync("/api/Api/NewPortDetailsEntry", requestData);
+
+            var strResponse = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
+            {
+                return "Success";
+            }
+            return strResponse;
+
+        }
+
     }
 }

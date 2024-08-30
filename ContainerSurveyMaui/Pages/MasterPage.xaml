@@ -3,12 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ContainerSurveyMaui.Pages.MasterPage"
                           NavigationPage.HasBackButton="False"
+             NavigationPage.HasNavigationBar="False"
 
              >
     <VerticalStackLayout>
-        <HorizontalStackLayout BackgroundColor="White" HeightRequest="85">
-            <Image Source="vedanta_logo" HeightRequest="90" Margin="70,0,0,0"/>
-        </HorizontalStackLayout>
+        <Frame BackgroundColor="White" BorderColor="White" HasShadow="False">
+            <HorizontalStackLayout BackgroundColor="Transparent" HeightRequest="55" HorizontalOptions="Center" VerticalOptions="Center" >
+                <Image Source="vedanta_logo" HeightRequest="85"/>
+            </HorizontalStackLayout>
+        </Frame>
 
         <Label 
             Text="Redirecting, Please wait!!!"

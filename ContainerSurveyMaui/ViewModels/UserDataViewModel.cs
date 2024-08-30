@@ -3,7 +3,6 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
 using System.Text.Json;
-using static Java.Util.Jar.Attributes;
 //using Windows.System;
 
 namespace ContainerSurveyMaui.ViewModels;
@@ -41,7 +40,7 @@ public class UserDataViewModel : BaseViewModel
             foreach (var user in users)
             {
 
-                var temp = new User { email = user.email, password = user.password, phone_number = user.phone_number, role = user.role };
+                var temp = new User { email = user.email, password = user.password, phone_number = user.phone_number, role = user.role,userId=user.userId };
                 userData.Add(temp);
             }
         }
@@ -85,6 +84,7 @@ public class UserDataViewModel : BaseViewModel
 public class User
 {
 
+    public int userId { get; set; }   
     [DisplayName("Phone Number")]
     public string? phone_number { get; set; }
     [DisplayName("Email")]

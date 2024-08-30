@@ -1,6 +1,7 @@
 using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
+using System.Text.RegularExpressions;
 using ContainerSurveyMaui.Constants;
 using ContainerSurveyMaui.Services;
 
@@ -10,10 +11,10 @@ public partial class HomePage : ContentPage
 {
 
     private readonly AuthService _authService;
-	public HomePage()
-	{
-		InitializeComponent();
-        _authService=new AuthService();
+    public HomePage()
+    {
+        InitializeComponent();
+        _authService = new AuthService();
         List<string> roles = new List<string>
             {
                 "Admin",
@@ -44,7 +45,7 @@ public partial class HomePage : ContentPage
         }
     }
 
-    
+
 
     private async void Button_Clicked(object sender, EventArgs e)
     {
@@ -87,10 +88,13 @@ public partial class HomePage : ContentPage
                 if (w == "OK")
                 {
                     await Navigation.PushAsync(new ViewDataPage());
-                    await DisplayAlert("Ok", "User Created Successfully", "OK");
+                    await DisplayAlert("Success", "User Created Successfully", "OK");
                 }
                 else
-                    await DisplayAlert("Alert", "Problem while creating User", "OK");
+                {
+                    string errorMessage = await resp.Content.ReadAsStringAsync();
+                    await DisplayAlert("Alert", errorMessage, "OK");
+                }
 
             }
             catch (HttpRequestException ex)
@@ -104,10 +108,34 @@ public partial class HomePage : ContentPage
         }
     }
 
-  
+
 
     private void passwordEntry_Loaded(object sender, EventArgs e)
     {
+
+    }
+
+    private void PhoneEntry_TextChanged(object sender, TextChangedEventArgs e)
+    {
+
+        Regex RegexExp = new Regex(@"^(\+91[\-\s]?)?[0]?(91)?[789]\d{9}$");
+        var phnEntry = e.NewTextValue;
+        Match regexMatch = RegexExp.Match(phnEntry);
+        if (!regexMatch.Success)
+        {
+            validationStatement.Text = "Invalid Phone Number";
+            validationStatement.TextColor = new Color(173, 0, 0);
+            CreateBtn.IsEnabled = false;
+        }
+        else
+        {
+            validationStatement.Text = "";
+            CreateBtn.IsEnabled = true;
+
+        }
+
+
+
 
     }
 }

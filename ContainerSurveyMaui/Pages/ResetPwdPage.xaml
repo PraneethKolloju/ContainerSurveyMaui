@@ -5,14 +5,16 @@ xmlns:core="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ContainerSurveyMaui.Pages.ResetPwdPage"
                           xmlns:ur="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
-
-             NavigationPage.HasBackButton="False"
+              NavigationPage.HasNavigationBar="False"
+                Shell.TabBarIsVisible="False"
              >
     <ScrollView>
         <StackLayout>
-            <HorizontalStackLayout BackgroundColor="White" HeightRequest="85">
-                <Image Source="vedanta_logo" HeightRequest="90" Margin="70,0,0,0"/>
-            </HorizontalStackLayout>
+            <Frame BackgroundColor="White" BorderColor="White" HasShadow="False">
+                <HorizontalStackLayout BackgroundColor="Transparent" HeightRequest="55" HorizontalOptions="Center" VerticalOptions="Center" >
+                    <Image Source="vedanta_logo" HeightRequest="85"/>
+                </HorizontalStackLayout>
+            </Frame>
             <VerticalStackLayout Margin="25">
                 <Label FontSize="25" HorizontalOptions="Center" Margin="0,0,0,15" TextColor="#005298">Reset Password</Label>
                 <Label FontSize="15" HorizontalOptions="Center" Margin="0,7,10,15" x:Name="validationMsg"></Label>

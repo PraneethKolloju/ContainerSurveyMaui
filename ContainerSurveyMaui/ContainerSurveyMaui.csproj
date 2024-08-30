@@ -61,6 +61,7 @@
 
 
 	<ItemGroup>
+	  <None Remove="Resources\Images\add.png" />
 	  <None Remove="Resources\Images\adduser.png" />
 	  <None Remove="Resources\Images\arrowright.png" />
 	  <None Remove="Resources\Images\calendar.png" />
@@ -71,6 +72,7 @@
 	  <None Remove="Resources\Images\List.png" />
 	  <None Remove="Resources\Images\location.png" />
 	  <None Remove="Resources\Images\logout.png" />
+	  <None Remove="Resources\Images\resetpwd.png" />
 	  <None Remove="Resources\Images\search.png" />
 	  <None Remove="Resources\Images\searchNo.png" />
 	  <None Remove="Resources\Images\searchnowhite.png" />
@@ -119,6 +121,9 @@
 	  <MauiXaml Update="Pages\MasterPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Pages\PortDetailsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\ResetPwdPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -132,5 +137,7 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
+
+	<ProjectExtensions><VisualStudio><UserProperties XamarinHotReloadGenericExceptionInfoBarContainerSurveyMauiHideInfoBar="True" /></VisualStudio></ProjectExtensions>
 
 </Project>

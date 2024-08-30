@@ -4,8 +4,8 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
     xmlns:pages="clr-namespace:ContainerSurveyMaui.Pages"
-    Title="Container Survey Application" 
-   
+    NavigationPage.HasNavigationBar="False"
+  
     >
     <TabBar Shell.TabBarForegroundColor="#005298" Shell.TabBarTitleColor="#005298" Shell.NavBarIsVisible="False">
         <Tab x:Name="ViewDataPage" Title="User Entry" Icon="home.png" IsVisible="False">

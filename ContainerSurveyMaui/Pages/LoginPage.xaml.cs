@@ -1,4 +1,5 @@
 using ContainerSurveyMaui.Services;
+using DeviceDetails;
 using Plugin.Maui.Biometric;
 using System.Net.Http.Json;
 using System.Text;
@@ -9,12 +10,14 @@ namespace ContainerSurveyMaui.Pages;
 public partial class LoginPage : ContentPage
 {
     private readonly IAuthService _authService;
+    public GetDeviceInfo _getDeviceInfo;
+
     public LoginPage()
     {
         InitializeComponent();
         SecureStorage.SetAsync("isLoggedIn", "notok");
         _authService = new AuthService();
-
+        _getDeviceInfo = new GetDeviceInfo();
     }
 
     private async void Login_Clicked(object sender, EventArgs e)
@@ -24,7 +27,7 @@ public partial class LoginPage : ContentPage
             var email = userNameEntry.Text;
             var password = passwordEntry.Text;
 
-            if (email == null || password == null || email=="" || password=="")
+            if (email == null || password == null || email == "" || password == "")
             {
                 if (email == null || email == "")
                 {
@@ -42,7 +45,6 @@ public partial class LoginPage : ContentPage
                 {
                     pwdValidations.Text = "";
                 }
-                //Application.Current.MainPage = new NavigationPage(new LoginPage());
 
             }
             else
@@ -51,22 +53,47 @@ public partial class LoginPage : ContentPage
                 overlay.IsVisible = true;
                 mainLayout.IsEnabled = false;
 
+
                 bool result = await _authService.LoginApi(email, password);
 
                 if (result)
                 {
-                    SecureStorage.SetAsync("isLoggedIn","ok");
+                    await SecureStorage.SetAsync("LoggedInName", email.ToString());
+                    var deviceId = _getDeviceInfo.GetDeviceID();
+                    var existingDeviceId = await _authService.GetDeviceId(email, password);
+                    var temp = existingDeviceId.Count();
+                    if (temp != 0)
+                    {
+                        if (existingDeviceId != deviceId)
+                        {
+                            await DisplayAlert("Alert", "Please Login using the Registered Device", "OK");
+                            return;
+                        }
+                    }
+                    SecureStorage.SetAsync("isLoggedIn", "ok");
                     ActivityIndicator activityIndicator = new ActivityIndicator { IsRunning = true };
                     Application.Current.MainPage = new NavigationPage(new AppShell());
                 }
                 else
-                    await DisplayAlert("Alert", "Incorrect Credentials", "ok");
+                {
+                    var msg = await SecureStorage.GetAsync("login_error");
+                    if (msg != null)
+                    {
+                        await DisplayAlert("Alert", msg, "OK");
+                        return;
+                    }
+                    else
+                    {
+                        await DisplayAlert("Alert", "Incorrect Credentials", "OK");
+                        return;
+                    }
+                }
             }
         }
-        catch (Exception)
+        catch (Exception ex)
         {
-
-            throw;
+            await DisplayAlert("Alert", ex.Message, "OK");
+            return;
         }
         finally
         {

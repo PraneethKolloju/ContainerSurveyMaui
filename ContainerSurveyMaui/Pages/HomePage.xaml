@@ -8,38 +8,45 @@
              xmlns:ur="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
              xmlns:vm="clr-namespace:ContainerSurveyMaui.ViewModels"
              xmlns:uranium="http://schemas.enisn-projects.io/dotnet/maui/uraniumui"
+              NavigationPage.HasBackButton="True"
+ NavigationPage.HasNavigationBar="False"
             >
 
     <ScrollView>
-        <StackLayout>
-            <HorizontalStackLayout BackgroundColor="White" HeightRequest="85">
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <HorizontalStackLayout Margin="0,0,0,1000" BackgroundColor="White" HeightRequest="85" Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
                 <Image Source="vedanta_logo" HeightRequest="90" Margin="70,0,0,0"/>
             </HorizontalStackLayout>
-            <VerticalStackLayout>
-                <HorizontalStackLayout Margin="20" Spacing="60">
-                    <Label HorizontalOptions="Center" FontSize="18" Margin="95,0,0,0" FontFamily="bold">Create a New User</Label>
+            <VerticalStackLayout  Margin="20,20,20,0">
+                <HorizontalStackLayout Spacing="60"  Grid.Row="1">
+                    <Label FontSize="25" HorizontalOptions="CenterAndExpand" Margin="50,100,0,0" TextColor="#005298">Create New User</Label>
                 </HorizontalStackLayout>
-                <StackLayout Margin="20">
-                    <Grid Margin="0,5">
-                        <ur:TextField x:Name="userNameEntry" Title="Username*" AccentColor="#005298" TextColor="Black"/>
-                    </Grid>
-                    <Grid Margin="0,5">
-                        <ur:TextField x:Name="PhoneEntry" Title="PhoneNumber*" AccentColor="#005298" TextColor="Black"/>
-                    </Grid>
-                    <Grid Margin="0,6">
-                        <ur:PickerField Title="Pick a Role*" x:Name="Role" AccentColor="#005298" TextColor="Black"/>
-                    </Grid>
-                    <Grid Margin="0,5">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
-                        <ur:TextField x:Name="passwordEntry" Title="Password" AccentColor="#005298" Loaded="Generate_Pwd"/>
-                        <ImageButton Source="undo" Margin="5" HeightRequest="30" WidthRequest="30" Clicked="Generate_Pwd" Grid.Column="1"/>
-                    </Grid>
-                    <Button Text="Create" Margin="10,50" BackgroundColor="#005298" Clicked="Button_Clicked" WidthRequest="300"/>
-                </StackLayout>
+                <Label FontSize="14" HorizontalOptions="CenterAndExpand" x:Name="validationStatement" Grid.Row="2" Margin="0,0,0,20"></Label>
+
+                <ur:TextField x:Name="userNameEntry"  Title="Username*" AccentColor="#005298" TextColor="Black"  Grid.Row="3" Margin="0,0,0,10"/>
+                <ur:TextField x:Name="PhoneEntry" Title="PhoneNumber*" AccentColor="#005298" TextColor="Black"  Grid.Row="4"  Margin="0,0,0,10" TextChanged="PhoneEntry_TextChanged"/>
+                <ur:PickerField Title="Pick a Role*" x:Name="Role" AccentColor="#005298" TextColor="Black"  Grid.Row="5"  Margin="0,0,0,10"/>
+                <Grid Margin="0,5,0,0"  Grid.Row="6">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <ur:TextField x:Name="passwordEntry" Title="Password" AccentColor="#005298" Loaded="Generate_Pwd"/>
+                    <ImageButton Source="undo" Margin="5" HeightRequest="30" WidthRequest="30" Clicked="Generate_Pwd" Grid.Column="1"/>
+                </Grid>
+                <Button x:Name="CreateBtn" Text="Create" Margin="10,50,0,0" BackgroundColor="#005298" Clicked="Button_Clicked" WidthRequest="300"  Grid.Row="7"/>
             </VerticalStackLayout>
-        </StackLayout>
+        </Grid>
     </ScrollView>
 </ContentPage>

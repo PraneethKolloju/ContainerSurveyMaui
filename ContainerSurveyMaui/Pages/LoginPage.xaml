@@ -11,9 +11,9 @@
                     <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
                 <Image Grid.Row="0" Margin="0,-30,0,0" Source="vedanta_logo" HeightRequest="200" WidthRequest="300"></Image>
-                <Frame Grid.Row="1"  Margin="10,-40,10,10" BorderColor="Black" BackgroundColor="White" HasShadow="False"  CornerRadius="25">
+                <Frame Grid.Row="1"  Margin="10,-20,10,0" BorderColor="Black" BackgroundColor="White" HasShadow="True"  CornerRadius="25">
 
-                    <Grid x:Name="mainLayout" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="20" Padding="20,50,20,0">
+                    <Grid x:Name="mainLayout" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="20" Padding="20,0,20,0" Margin="0,50">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"></RowDefinition>
                             <RowDefinition Height="Auto"></RowDefinition>
@@ -37,18 +37,18 @@
                                                  Color="#005298"
                               />
                         </Grid>
-                        <Label Grid.Row="0"  Text="Container Survey Application" FontSize="20" FontAttributes="Bold" TextColor="#005298" HorizontalOptions="CenterAndExpand"></Label>
+                        <Label Grid.Row="0"  Text="Container Survey Application" FontSize="15" FontAttributes="Bold" TextColor="#005298" HorizontalOptions="Center" ></Label>
                         <Label Grid.Row="1" FontFamily="GeoramaLight" Margin="0,-15,0,0" FontSize="18" Text="Welcome!" TextColor="#005298"  HorizontalOptions="CenterAndExpand"></Label>
                         <Entry  Grid.Row="2" PlaceholderColor="Black" x:Name="userNameEntry" Placeholder="Username" Margin="0,20,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" TextColor="Black"></Entry>
-                        <Label Grid.Row="3"  TextColor="Red" Margin="8,-20,0,0" x:Name="nameValidation"></Label>
+                        <Label Grid.Row="3"  TextColor="Red" Margin="8,-20,0,0" x:Name="nameValidation" FontSize="12"></Label>
                         <Entry Grid.Row="4"  PlaceholderColor="Black" Margin="0,-20,0,0" x:Name="passwordEntry" Placeholder="Password" IsPassword="True" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></Entry>
-                        <Label Grid.Row="5"  TextColor="Red" Margin="8,-20,0,0" x:Name="pwdValidations"></Label>
-                        <Button Grid.Row="6" Text="Login" BackgroundColor="#005298" CornerRadius="20" Clicked="Login_Clicked" x:Name="loginButton"></Button>
+                        <Label Grid.Row="5"  TextColor="Red" Margin="8,-20,0,0" x:Name="pwdValidations"  FontSize="12"></Label>
+                        <Button Grid.Row="6" Text="Login" BackgroundColor="#005298" CornerRadius="20" Clicked="Login_Clicked" x:Name="loginButton" HeightRequest="45"></Button>
 
 
-                        <Button Grid.Row="7" BackgroundColor="White" Text="Forgot Password?" TextColor="Black"  FontAttributes="Bold" HorizontalOptions="CenterAndExpand" Clicked="Button_Clicked" />
+                        <Button Grid.Row="7" BackgroundColor="White" Text="Forgot Password?" TextColor="Black"  FontAttributes="Bold" HorizontalOptions="CenterAndExpand" Clicked="Button_Clicked" HeightRequest="45" />
                         <!--<Label Grid.Row="7" Text="Forgot Password?"  FontAttributes="Bold" HorizontalOptions="CenterAndExpand"></Label>-->
-                        <ImageButton Grid.Row="8" Margin="30,-10,30,0" Source="touch" HeightRequest="30" WidthRequest="30"  Clicked="Bio_Clicked" Grid.Column="1"/>
+                        <!--<ImageButton Grid.Row="8" Margin="30,-10,30,0" Source="touch" HeightRequest="30" WidthRequest="30"  Clicked="Bio_Clicked" Grid.Column="1"/>-->
                         <!--<Label Grid.Row="9" Margin="0,45,0,0" Text="Don't have an account? Sign up" HorizontalOptions="CenterAndExpand"></Label>-->
                     </Grid>
                 </Frame>

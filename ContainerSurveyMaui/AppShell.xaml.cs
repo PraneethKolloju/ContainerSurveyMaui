@@ -27,11 +27,14 @@ namespace ContainerSurveyMaui
         private async Task LoadPopup()
         {
             var firsttime = await SecureStorage.GetAsync("firsttime_user");
-            if (firsttime == "1")
-            {
-                await DisplayAlert("Alert", "You're a New User, Reset the password", "OK");
-                await Navigation.PushAsync(new ResetPwdPage());
-            }
+            //if (firsttime == "1")
+            //{
+            //    await Task.Delay(3000);
+            //    await DisplayAlert("Alert", "You're a New User, Reset the password", "OK");
+                
+            //    await Navigation.PushAsync(new ResetPwdPage());
+                
+            //}
         }
 
 

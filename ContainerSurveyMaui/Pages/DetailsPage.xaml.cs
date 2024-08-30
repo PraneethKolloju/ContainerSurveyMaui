@@ -15,7 +15,7 @@ namespace ContainerSurveyMaui.Pages
         {
             Preferences.Set("Id", i);
             InitializeComponent();
-            viewModel = new ViewImageViewModel(); // Initialize viewModel
+            viewModel = new ViewImageViewModel();
             BindingContext = viewModel;
 
         }
@@ -30,5 +30,9 @@ namespace ContainerSurveyMaui.Pages
         {
             await Navigation.PushAsync(new SurveyPage());
         }
+        double currentScale = 1;
+        double startScale = 1;
+
+
     }
 }

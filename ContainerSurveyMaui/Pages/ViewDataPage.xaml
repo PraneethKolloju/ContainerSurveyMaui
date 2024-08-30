@@ -8,10 +8,9 @@ xmlns:cards="clr-namespace:Syncfusion.Maui.Cards;assembly=Syncfusion.Maui.Cards"
              xmlns:vm="clr-namespace:ContainerSurveyMaui.ViewModels"
             xmlns:uranium="http://schemas.enisn-projects.io/dotnet/maui/uraniumui"
              x:Class="ContainerSurveyMaui.Pages.ViewDataPage"
-
+ NavigationPage.HasBackButton="True"
+ NavigationPage.HasNavigationBar="False"
             >
-
-
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style TargetType="datagrid:DataGridHeaderCell">
@@ -29,56 +28,71 @@ xmlns:cards="clr-namespace:Syncfusion.Maui.Cards;assembly=Syncfusion.Maui.Cards"
 
     <ScrollView>
         <StackLayout Margin="1" Loaded="TableView_Loaded">
-            <HorizontalStackLayout BackgroundColor="White" HeightRequest="85">
-                <Image Source="vedanta_logo" HeightRequest="90" Margin="70,0,0,0"/>
-            </HorizontalStackLayout>
-            <HorizontalStackLayout Margin="0,30,0,10">
-                <Label FontSize="25" HorizontalOptions="Center" Margin="110,0,0,0" TextColor="#005298">User Details</Label>
-                <ImageButton Source="adduser" HeightRequest="35" Margin="-190,0,0,0" Clicked="Button_Clicked"></ImageButton>
-            </HorizontalStackLayout>
-            <Button Text="Show Filters" Clicked="showhidefitlers_Clicked"  WidthRequest="200" x:Name="showhidefitlers" ImageSource="setting" BorderColor="Black" BackgroundColor="White" TextColor="Black"/>
-            <StackLayout x:Name="SearchFilters" IsVisible="False" Margin="0,0,0,5">
-                <Grid Margin="0,10,0,5" HorizontalOptions="Center">
-                    <ur:TextField x:Name="username" Title="Enter User Name"  AccentColor="Black" WidthRequest="300" Margin="35,0,10,0" />
-                </Grid>
-                <Grid Margin="0,1,0,5" HorizontalOptions="Center">
-                    <ur:TextField x:Name="role" Title="Enter Role"  AccentColor="Black" WidthRequest="300" Margin="35,0,10,0" />
-                </Grid>
-                <Button Text="Search" Clicked="Button_Clicked_2" ImageSource="searchnowhite" HorizontalOptions="Center" BackgroundColor="#005298" CornerRadius="20" WidthRequest="200" />
-            </StackLayout>
-            <ActivityIndicator IsRunning="{Binding IsLoading}" IsVisible="{Binding IsLoading}" Color="#005298"  />
-            
-            <VerticalStackLayout Margin="30,30,30,15">
-                <CollectionView ItemsSource="{Binding userData}">
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <Frame BorderColor="#005298" Margin="0,0,0,16"  BackgroundColor="Transparent" HasShadow="True" CornerRadius="6" WidthRequest="300" HorizontalOptions="Center" >
-                                <StackLayout Margin="0,10,0,0">
-                                    <VerticalStackLayout>
-                                        <HorizontalStackLayout Spacing="5">
-                                            <Label FontAttributes="Bold" FontSize="15">UserName:</Label>
-                                            <Label Text="{Binding email}" />
-                                        </HorizontalStackLayout>
-                                        <HorizontalStackLayout Spacing="5">
-                                            <Label FontAttributes="Bold" FontSize="15">Phone Number:</Label>
-                                            <Label Text="{Binding phone_number}"/>
-                                        </HorizontalStackLayout>
-                                        <HorizontalStackLayout Spacing="5">
-                                            <Label FontAttributes="Bold" FontSize="15">Password:</Label>
-                                            <Label Text="{Binding password}" />
-                                        </HorizontalStackLayout>
-                                        <HorizontalStackLayout Spacing="5">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Frame Grid.Row="0" BackgroundColor="White" BorderColor="White" HasShadow="False">
+                    <HorizontalStackLayout BackgroundColor="Transparent" HeightRequest="55" HorizontalOptions="Center" VerticalOptions="Center" >
+                        <Image Source="vedanta_logo" HeightRequest="85"/>
+                    </HorizontalStackLayout>
+                </Frame>
+                <Label FontSize="25" HorizontalOptions="Center" Margin="0,15,0,0" TextColor="#005298" Grid.Row="1">User Details</Label>
+                <Button Text="Create New User" Clicked="Button_Clicked"  WidthRequest="200" ImageSource="adduser" BorderColor="Black" BackgroundColor="White" TextColor="Black"  Grid.Row="2" Margin="0,10"/>
+                <Button Text="Show Filters" Clicked="showhidefitlers_Clicked"  WidthRequest="200" x:Name="showhidefitlers" ImageSource="setting" BorderColor="Black" BackgroundColor="White" TextColor="Black"  Grid.Row="3"/>
+                <StackLayout x:Name="SearchFilters" IsVisible="False"  Margin="0,0,15,0"   Grid.Row="4" HorizontalOptions="CenterAndExpand" >
+                    <Grid Margin="0,10,0,5">
+                        <ur:TextField x:Name="username" Title="Enter User Name or Phone number"  AccentColor="Black" WidthRequest="300" Margin="35,0,10,0" />
+                    </Grid>
+                    <Grid Margin="0,1,0,5">
+                        <ur:TextField x:Name="role" Title="Enter Role"  AccentColor="Black" WidthRequest="300" Margin="35,0,10,0" />
+                    </Grid>
+                    <Button Text="Search" Clicked="Button_Clicked_2" ImageSource="searchnowhite" HorizontalOptions="Center" BackgroundColor="#005298" CornerRadius="20" WidthRequest="200" />
+                </StackLayout >
+                <ActivityIndicator IsRunning="{Binding IsLoading}" IsVisible="{Binding IsLoading}" Color="#005298"  HeightRequest="50" Grid.Row="5"/>
+                <VerticalStackLayout Margin="0,20,0,0" Grid.Row="6" HorizontalOptions="Center">
+                    <CollectionView ItemsSource="{Binding userData}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Frame BorderColor="#005298" Margin="0,0,0,16"  BackgroundColor="Transparent" HasShadow="True" CornerRadius="6" WidthRequest="300" HorizontalOptions="Center" >
+                                    <StackLayout Margin="0,10,0,0">
+                                        <VerticalStackLayout>
+                                            <HorizontalStackLayout Spacing="5">
+                                                <Label FontAttributes="Bold" FontSize="15">UserName:</Label>
+                                                <Label Text="{Binding email}" />
+                                            </HorizontalStackLayout>
+                                            <HorizontalStackLayout Spacing="5">
+                                                <Label FontAttributes="Bold" FontSize="15">Phone Number:</Label>
+                                                <Label Text="{Binding phone_number}"/>
+                                            </HorizontalStackLayout>
+                                            <HorizontalStackLayout Spacing="5">
+                                                <Label FontAttributes="Bold" FontSize="15">Password:</Label>
+                                                <Label Text="{Binding password}" />
+                                            </HorizontalStackLayout>
+                                            <HorizontalStackLayout Spacing="5">
                                                 <Label FontAttributes="Bold" FontSize="15" >Role:</Label>
                                                 <Label Text="{Binding role}" LineBreakMode="WordWrap" MaxLines="4"/>
-                                        </HorizontalStackLayout>
-                                    </VerticalStackLayout>
-                                </StackLayout>
-                            </Frame>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
+                                            </HorizontalStackLayout>
+                                            <Button Text="Reset User" Margin="0,20,0,0" Clicked="Button_Clicked_3" ImageSource="resetpwd" BorderColor="Black" BackgroundColor="#005298" TextColor="White" FontSize="12" WidthRequest="150"  BindingContext="{Binding .}" />
+                                        </VerticalStackLayout>
+                                    </StackLayout>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
 
-            </VerticalStackLayout>
+                </VerticalStackLayout>
+            </Grid>
+
         </StackLayout>
     </ScrollView>
 
