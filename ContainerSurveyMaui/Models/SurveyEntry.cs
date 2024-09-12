@@ -21,6 +21,8 @@ namespace ContainerSurveyMaui.Models
         private byte[] _attachment_3;
         private byte[] _attachment_4;
 
+        public string createdOn { get; set; } 
+
         public byte[] attachment_1
         {
             get => _attachment_1;

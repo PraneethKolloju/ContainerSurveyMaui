@@ -13,6 +13,7 @@ public partial class SurveyPage : ContentPage
 {
     public GetPostSevice _getpostservice;
     private MainViewModel viewModel;
+    public string strContainerNo = "";
 
     public SurveyPage()
     {
@@ -99,6 +100,7 @@ public partial class SurveyPage : ContentPage
             var surveyEntry = button.BindingContext as SurveyEntry;
             if (surveyEntry == null) return;
             int i = surveyEntry.id.Value;
+            strContainerNo = surveyEntry.container_No;
             var res = await _getpostservice.GetImages(i);
             var data = JsonSerializer.Deserialize<List<SurveyDetails>>(res);
             await SaveAttachments(data[0]);
@@ -126,52 +128,71 @@ public partial class SurveyPage : ContentPage
                
                 using (var stream=new MemoryStream(imageData.attachment_1))
                 {
-                    var res = await FileSaver.SaveAsync("Attachment1.jpg", stream, CancellationToken.None);
+                    var res = await FileSaver.SaveAsync(strContainerNo+"_Attachment1.jpg", stream, CancellationToken.None);
                     if(res.IsSuccessful)
                     {
                         i += 1;
                     }
                 }
             }
+            else
+            {
+                await DisplayAlert("Alert", "Attachment 1 not found", "OK");
+            }
+
             if (imageData.attachment_2 != null)
             {
 
                 
                 using (var stream = new MemoryStream(imageData.attachment_2))
                 {
-                    var res = await FileSaver.SaveAsync("Attachment2.jpg", stream, CancellationToken.None);
+                    var res = await FileSaver.SaveAsync(strContainerNo + "_Attachment2.jpg", stream, CancellationToken.None);
                     if (res.IsSuccessful)
                     {
                         i += 1;
                     }
                 }
             }
+            else
+            {
+                await DisplayAlert("Alert", "Attachment 2 not found", "OK");
+            }
+
             if (imageData.attachment_3 != null)
             {
 
                 using (var stream = new MemoryStream(imageData.attachment_3))
                 {
-                    var res = await FileSaver.SaveAsync("Attachment3.jpg", stream, CancellationToken.None);
+                    var res = await FileSaver.SaveAsync(strContainerNo + "_Attachment3.jpg", stream, CancellationToken.None);
                     if (res.IsSuccessful)
                     {
                         i += 1;
                     }
                 }
             }
+            else
+            {
+                await DisplayAlert("Alert", "Attachment 3 not found", "OK");
+            }
+
             if (imageData.attachment_4 != null)
             {
 
                 using (var stream = new MemoryStream(imageData.attachment_4))
                 {
-                    var res = await FileSaver.SaveAsync("Attachment4.jpg", stream, CancellationToken.None);
+                    var res = await FileSaver.SaveAsync(strContainerNo + "_Attachment4.jpg", stream, CancellationToken.None);
                     if (res.IsSuccessful)
                     {
                         i += 1;
                     }
                 }
             }
+            else
+            {
+                await DisplayAlert("Alert", "Attachment 4 not found", "OK");
+            }
 
-            if (i == 4)
+            if (i >= 1)
             {
                 await DisplayAlert("Success", "Images downloaded successfully.", "OK");
 

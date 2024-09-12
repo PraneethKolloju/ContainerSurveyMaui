@@ -2,7 +2,6 @@ using ContainerSurveyMaui.Models;
 using ContainerSurveyMaui.ViewModels;
 using System.Collections.Generic;
 using Microsoft.Maui.Controls;
-using Syncfusion.Maui.Core.Carousel;
 
 namespace ContainerSurveyMaui.Pages
 {

@@ -118,7 +118,7 @@ public partial class HomePage : ContentPage
     private void PhoneEntry_TextChanged(object sender, TextChangedEventArgs e)
     {
 
-        Regex RegexExp = new Regex(@"^(\+91[\-\s]?)?[0]?(91)?[789]\d{9}$");
+        Regex RegexExp = new Regex(@"^(\+91[\-\s]?)?[0]?(91)?[6789]\d{9}$");
         var phnEntry = e.NewTextValue;
         Match regexMatch = RegexExp.Match(phnEntry);
         if (!regexMatch.Success)

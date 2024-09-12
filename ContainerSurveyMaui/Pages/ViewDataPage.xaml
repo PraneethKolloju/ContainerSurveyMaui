@@ -1,26 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-xmlns:datagrid="clr-namespace:Syncfusion.Maui.DataGrid;assembly=Syncfusion.Maui.DataGrid"
-xmlns:listview="clr-namespace:Syncfusion.Maui.ListView;assembly=Syncfusion.Maui.ListView"
-xmlns:cards="clr-namespace:Syncfusion.Maui.Cards;assembly=Syncfusion.Maui.Cards"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:ur="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
              xmlns:vm="clr-namespace:ContainerSurveyMaui.ViewModels"
-            xmlns:uranium="http://schemas.enisn-projects.io/dotnet/maui/uraniumui"
+                xmlns:uranium="http://schemas.enisn-projects.io/dotnet/maui/uraniumui"
              x:Class="ContainerSurveyMaui.Pages.ViewDataPage"
  NavigationPage.HasBackButton="True"
  NavigationPage.HasNavigationBar="False"
             >
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <Style TargetType="datagrid:DataGridHeaderCell">
-                <Setter Property="Background" Value="#AFD5FB"/>
-                <Setter Property="TextColor" Value="#212121"/>
-                <Setter Property="FontAttributes" Value="Italic"/>
-                <Setter Property="FontSize" Value="14"/>
-            </Style>
-        </ResourceDictionary>
-    </ContentPage.Resources>
+
 
     <ContentPage.BindingContext>
         <vm:UserDataViewModel/>
@@ -51,10 +39,10 @@ xmlns:cards="clr-namespace:Syncfusion.Maui.Cards;assembly=Syncfusion.Maui.Cards"
                 <Button Text="Show Filters" Clicked="showhidefitlers_Clicked"  WidthRequest="200" x:Name="showhidefitlers" ImageSource="setting" BorderColor="Black" BackgroundColor="White" TextColor="Black"  Grid.Row="3"/>
                 <StackLayout x:Name="SearchFilters" IsVisible="False"  Margin="0,0,15,0"   Grid.Row="4" HorizontalOptions="CenterAndExpand" >
                     <Grid Margin="0,10,0,5">
-                        <ur:TextField x:Name="username" Title="Enter User Name or Phone number"  AccentColor="Black" WidthRequest="300" Margin="35,0,10,0" />
+                        <ur:TextField x:Name="username" Title="Enter User Name or Phone number" TextColor="Black"  AccentColor="Black" WidthRequest="300" Margin="35,0,10,0" />
                     </Grid>
                     <Grid Margin="0,1,0,5">
-                        <ur:TextField x:Name="role" Title="Enter Role"  AccentColor="Black" WidthRequest="300" Margin="35,0,10,0" />
+                        <ur:TextField x:Name="role" Title="Enter Role" TextColor="Black"  AccentColor="Black" WidthRequest="300" Margin="35,0,10,0" />
                     </Grid>
                     <Button Text="Search" Clicked="Button_Clicked_2" ImageSource="searchnowhite" HorizontalOptions="Center" BackgroundColor="#005298" CornerRadius="20" WidthRequest="200" />
                 </StackLayout >
@@ -67,19 +55,19 @@ xmlns:cards="clr-namespace:Syncfusion.Maui.Cards;assembly=Syncfusion.Maui.Cards"
                                     <StackLayout Margin="0,10,0,0">
                                         <VerticalStackLayout>
                                             <HorizontalStackLayout Spacing="5">
-                                                <Label FontAttributes="Bold" FontSize="15">UserName:</Label>
+                                                <Label FontAttributes="Bold" FontSize="15" TextColor="#005298">UserName:</Label>
                                                 <Label Text="{Binding email}" />
                                             </HorizontalStackLayout>
                                             <HorizontalStackLayout Spacing="5">
-                                                <Label FontAttributes="Bold" FontSize="15">Phone Number:</Label>
+                                                <Label FontAttributes="Bold" FontSize="15" TextColor="#005298">Phone Number:</Label>
                                                 <Label Text="{Binding phone_number}"/>
                                             </HorizontalStackLayout>
                                             <HorizontalStackLayout Spacing="5">
-                                                <Label FontAttributes="Bold" FontSize="15">Password:</Label>
+                                                <Label FontAttributes="Bold" FontSize="15" TextColor="#005298">Password:</Label>
                                                 <Label Text="{Binding password}" />
                                             </HorizontalStackLayout>
                                             <HorizontalStackLayout Spacing="5">
-                                                <Label FontAttributes="Bold" FontSize="15" >Role:</Label>
+                                                <Label FontAttributes="Bold" FontSize="15" TextColor="#005298">Role:</Label>
                                                 <Label Text="{Binding role}" LineBreakMode="WordWrap" MaxLines="4"/>
                                             </HorizontalStackLayout>
                                             <Button Text="Reset User" Margin="0,20,0,0" Clicked="Button_Clicked_3" ImageSource="resetpwd" BorderColor="Black" BackgroundColor="#005298" TextColor="White" FontSize="12" WidthRequest="150"  BindingContext="{Binding .}" />

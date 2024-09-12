@@ -30,7 +30,7 @@
                 </ur:PickerField>
                 <ur:PickerField Margin="0,5,0,10" Title="Shipping Line*" WidthRequest="340" HeightRequest="50" AccentColor="#005298" ItemsSource="{Binding ShippingLines}" x:Name="ShipLine" TextColor="Black">
                 </ur:PickerField>
-                <ur:TextField Margin="0,5,0,10"  Title="Container No*" WidthRequest="340" HeightRequest="50" AccentColor="#005298" x:Name="ContainerNo" TextColor="Black">
+                <ur:TextField Margin="0,5,0,10"  Title="Container No* (AAAA#######)" WidthRequest="340" HeightRequest="50" AccentColor="#005298" x:Name="ContainerNo" TextColor="Black">
                     <ur:TextField.Behaviors>
                         <toolkit:TextValidationBehavior
                              x:Name="ContainerNoValid"

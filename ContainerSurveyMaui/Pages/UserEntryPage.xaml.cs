@@ -115,7 +115,7 @@ public partial class UserEntryPage : ContentPage
         Containers = new List<string>
             {
                 "Selected",
-                "to be repaired",
+                "To be repaired",
                 "Rejected",
 
             };
@@ -446,7 +446,7 @@ public partial class UserEntryPage : ContentPage
 
             if (!regexValid)
             {
-                await DisplayAlert("Error", "Enter Valid Container No", "Ok");
+                await DisplayAlert("Error", "Enter Valid Container No \n*First 4 should be characters, and the next 7 should be numbers.", "Ok");
                 return;
             }
 
