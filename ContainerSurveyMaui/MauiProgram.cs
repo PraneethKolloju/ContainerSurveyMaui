@@ -1,4 +1,3 @@
-using Syncfusion.Maui.Core.Hosting;
 using ContainerSurveyMaui.Pages;
 using ContainerSurveyMaui.Services;
 using Microsoft.Extensions.Logging;

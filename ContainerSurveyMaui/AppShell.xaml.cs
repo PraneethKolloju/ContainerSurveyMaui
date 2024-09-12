@@ -1,6 +1,5 @@
 ﻿using ContainerSurveyMaui.Pages;
 using ContainerSurveyMaui.Services;
-using Syncfusion.Maui.Popup;
 using System.Diagnostics;
 
 namespace ContainerSurveyMaui
