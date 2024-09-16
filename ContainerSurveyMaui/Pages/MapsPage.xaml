@@ -4,21 +4,20 @@
              x:Class="ContainerSurveyMaui.Pages.MapsPage"
              Title="Location Coordinates"
                           NavigationPage.HasBackButton="True"
-                          NavigationPage.HasNavigationBar="False"
-              
+                          NavigationPage.HasNavigationBar="False"             
              >
-    
-    <ScrollView>
+
+    <ScrollView BackgroundColor="#f7f7f7">
         <StackLayout>
-           
-            <Frame BackgroundColor="White" BorderColor="White" HasShadow="False">
+
+            <Frame BackgroundColor="White" BorderColor="White" HasShadow="True">
                 <HorizontalStackLayout BackgroundColor="Transparent" HeightRequest="55" HorizontalOptions="Center" VerticalOptions="Center" >
                     <Image Source="vedanta_logo" HeightRequest="85"/>
                 </HorizontalStackLayout>
             </Frame>
             <Frame HeightRequest="500" Margin="10,20,10,0" BackgroundColor="White">
-            <WebView Source="MapLeaf.html" x:Name="LocationWebview"/>
-        </Frame>
+                <WebView Source="MapLeaf.html" x:Name="LocationWebview"/>
+            </Frame>
 
         </StackLayout>
     </ScrollView>

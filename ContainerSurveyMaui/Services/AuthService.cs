@@ -47,14 +47,13 @@ namespace ContainerSurveyMaui.Services
             try
             {
                 var resp = await _httpClient.PostAsync("api/Api/Login", requestData);
+                await SecureStorage.SetAsync("login_error", resp.StatusCode.ToString());
                 var response = await resp.Content.ReadAsStringAsync();
                 var jsonResponse = JsonSerializer.Deserialize<Dictionary<string, object>>(response);
                 var token = jsonResponse["Token"].ToString();
                 var role = jsonResponse["Role"].ToString();
                 var firsttime = jsonResponse["FirsttimeUser"].ToString();
-
                 await SecureStorage.SetAsync("firsttime_user", firsttime);
-
                 JsonObject result = new JsonObject();
                 await SecureStorage.SetAsync("jwt_token", token);
                 await SecureStorage.SetAsync("Role", role);
@@ -63,13 +62,11 @@ namespace ContainerSurveyMaui.Services
                     return true;
                 else
                 {
-                    await SecureStorage.SetAsync("login_error", resp.RequestMessage.ToString());
                     return false;
                 }
             }
             catch (Exception ex)
             {
-                await SecureStorage.SetAsync("login_error",ex.Message.ToString());
                 return false;
             }
         }

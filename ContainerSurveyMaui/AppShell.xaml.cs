@@ -19,8 +19,8 @@ namespace ContainerSurveyMaui
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-            await ConfigureTabs();
-            await LoadPopup();
+            ConfigureTabs();
+             LoadPopup();
         }
 
         private async Task LoadPopup()
@@ -43,7 +43,7 @@ namespace ContainerSurveyMaui
 
             try
             {
-                var Role = await SecureStorage.GetAsync("Role");
+                var Role =await  SecureStorage.GetAsync("Role");
                 if (Role == "User")
                 {
                     CurrentItem = ViewDataPage;
@@ -73,23 +73,7 @@ namespace ContainerSurveyMaui
 
 
 
-        //protected override async void OnNavigating(ShellNavigatingEventArgs args)
-        //{
-        //    base.OnNavigating(args);
-
-        //    if (args.Target.Location.OriginalString.Contains("//Logout"))
-        //    {
-        //        bool answer = await DisplayAlert("Logout", "Are you sure you want to logout?", "Yes", "No");
-        //        if (answer)
-        //        {
-        //            Logout();
-        //        }
-        //        else
-        //        {
-        //            args.Cancel();
-        //        }
-        //    }
-        //}
+        
 
         private void Logout()
         {

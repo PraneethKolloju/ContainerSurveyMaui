@@ -77,7 +77,7 @@ public partial class LoginPage : ContentPage
                 else
                 {
                     var msg = await SecureStorage.GetAsync("login_error");
-                    if (msg != null)
+                    if (msg != "Unauthorized")
                     {
                         await DisplayAlert("Alert", msg, "OK");
                         return;

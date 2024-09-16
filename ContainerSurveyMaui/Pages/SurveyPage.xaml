@@ -21,7 +21,7 @@
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        <ScrollView VerticalScrollBarVisibility="Always">
+        <ScrollView VerticalScrollBarVisibility="Always" BackgroundColor="#f7f7f7">
             <Grid>
                 <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
@@ -33,21 +33,22 @@
                 </Grid.RowDefinitions>
 
                
-                <Frame Grid.Row="0" BackgroundColor="White" BorderColor="White" HasShadow="False">
+                <Frame Grid.Row="0" BackgroundColor="White" BorderColor="White" HasShadow="True">
                     <HorizontalStackLayout BackgroundColor="Transparent" HeightRequest="55" HorizontalOptions="Center" VerticalOptions="Center" >
                         <Image Source="vedanta_logo" HeightRequest="85"/>
                     </HorizontalStackLayout>
                 </Frame>
                 <Label FontSize="25" HorizontalOptions="Center" Margin="0,15,10,10" TextColor="#005298" Grid.Row="1">Survey Entry Details</Label>
-                <Button Text="Add Port Details" Clicked="Button_Clicked_2" Margin="0,0,0,10"  WidthRequest="200" ImageSource="add" BorderColor="Black" BackgroundColor="White" TextColor="Black" Grid.Row="2"/>
-                <Button Text="Show Filters" Clicked="Button_Clicked_1"  WidthRequest="200" x:Name="showhidefitlers" ImageSource="setting" BorderColor="Black" BackgroundColor="White" TextColor="Black" Grid.Row="3"/>
+                <Button Text="Add Port Details" Margin="0,0,0,10" FontSize="13" Clicked="Button_Clicked_2" ImageSource="add" Grid.Row="2"  BorderColor="Black" BackgroundColor="White" TextColor="Black" WidthRequest="250" HeightRequest="50" />
+                <Button Text="Show Filters" FontSize="13" Clicked="Button_Clicked_1" ImageSource="setting" x:Name="showhidefitlers" Grid.Row="3"  BorderColor="Black" BackgroundColor="White" TextColor="Black" WidthRequest="250" HeightRequest="50" />
+                <!--<Button Text="Show Filters" Clicked="Button_Clicked_1"  WidthRequest="200" x:Name="showhidefitlers" ImageSource="setting" BorderColor="Black" BackgroundColor="White" TextColor="Black" Grid.Row="3"/>-->
                 <StackLayout x:Name="SearchFilters" IsVisible="False" Margin="0,0,15,0" Grid.Row="4">
                     <Grid Margin="0,10,0,5" HorizontalOptions="Center">
                         <ur:TextField x:Name="Port" Title="Enter Port" TextColor="Black"  AccentColor="Black" WidthRequest="300" Margin="35,0,10,0" />
                     </Grid>
                     <Grid Margin="0,1,0,5" HorizontalOptions="Center">
                         <ur:TextField x:Name="Yard" Title="Enter Yard" TextColor="Black" AccentColor="Black" WidthRequest="300" Margin="35,0,10,0" />
-                    </Grid>
+                    </Grid>     
                     <Grid Margin="0,1,0,5" HorizontalOptions="Center">
                         <ur:TextField x:Name="ShippingLine" Title="Enter Shipping Line" TextColor="Black"  AccentColor="Black" WidthRequest="300" Margin="35,0,10,0" />
                     </Grid>
@@ -59,11 +60,11 @@
                     </Grid>
                     <Button Text="Search" Clicked="ImageButton_Clicked" ImageSource="searchnowhite" BorderColor="Black" BackgroundColor="#005298" TextColor="White" WidthRequest="200" />
                 </StackLayout>
-                <StackLayout Grid.Row="5">
+                <StackLayout Grid.Row="5" Margin="0,0,0,30">
                     <ActivityIndicator IsRunning="{Binding IsLoading}" IsVisible="{Binding IsLoading}" Color="#005298"  />
                     <Label Text="This might take some time" IsVisible="{Binding IsLoading}" HorizontalOptions="Center" />
                 </StackLayout>
-                <VerticalStackLayout Margin="30,30,30,15" Grid.Row="6">
+                <VerticalStackLayout Margin="30,70,30,15" Grid.Row="6">
                     <CollectionView ItemsSource="{Binding SurveyData}">
                         <CollectionView.ItemTemplate>
                             <DataTemplate>

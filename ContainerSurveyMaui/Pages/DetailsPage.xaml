@@ -20,10 +20,10 @@
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        <ScrollView VerticalScrollBarVisibility="Always">
+        <ScrollView VerticalScrollBarVisibility="Always" BackgroundColor="#f7f7f7">
             <StackLayout>
 
-                <Frame BackgroundColor="White" BorderColor="White" HasShadow="False">
+                <Frame BackgroundColor="White" BorderColor="White" HasShadow="True">
                     <HorizontalStackLayout BackgroundColor="Transparent" HeightRequest="55" HorizontalOptions="Center" VerticalOptions="Center" >
                         <Image Source="vedanta_logo" HeightRequest="85"/>
                     </HorizontalStackLayout>

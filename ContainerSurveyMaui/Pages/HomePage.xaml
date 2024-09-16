@@ -12,7 +12,7 @@
  NavigationPage.HasNavigationBar="False"
             >
 
-    <ScrollView>
+    <ScrollView BackgroundColor="#f7f7f7">
 
         <Grid>
             <Grid.RowDefinitions>

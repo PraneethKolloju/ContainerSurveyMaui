@@ -8,7 +8,7 @@
             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
  NavigationPage.HasNavigationBar="False"
              >
-    <ScrollView>
+    <ScrollView BackgroundColor="#f7f7f7">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -17,7 +17,7 @@
                 
             </Grid.RowDefinitions>
          
-            <Frame BackgroundColor="White" BorderColor="White" HasShadow="False" Grid.Row="0">
+            <Frame BackgroundColor="White" BorderColor="White" HasShadow="True" Grid.Row="0">
                 <HorizontalStackLayout BackgroundColor="Transparent" HeightRequest="55" HorizontalOptions="Center" VerticalOptions="Center" >
                     <Image Source="vedanta_logo" HeightRequest="85"/>
                 </HorizontalStackLayout>

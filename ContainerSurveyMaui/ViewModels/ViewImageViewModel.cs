@@ -4,7 +4,6 @@ using System.Collections.ObjectModel;
 using System.Text.Json;
 using System.Windows.Input;
 using Microsoft.Maui.Storage;
-using Xamarin.Essentials;
 
 namespace ContainerSurveyMaui.ViewModels
 {
@@ -40,10 +39,10 @@ namespace ContainerSurveyMaui.ViewModels
                 {
                     var temp = new SurveyDetails
                     {
-                        attachment_1 = i.attachment_1,
-                        attachment_2 = i.attachment_2,
-                        attachment_3 = i.attachment_3,
-                        attachment_4 = i.attachment_4,
+                        attachment_1 = await LoadImageAsync(i.attachment_1),
+                        attachment_2 = await LoadImageAsync(i.attachment_2),
+                        attachment_3 = await LoadImageAsync(i.attachment_3),
+                        attachment_4 = await LoadImageAsync(i.attachment_4),
                         id = i.id
                     };
                     ImageData.Add(temp);
@@ -58,6 +57,18 @@ namespace ContainerSurveyMaui.ViewModels
             {
                 IsLoading = false; // Reset loading state
             }
+        }
+
+        private async Task<byte[]> LoadImageAsync(byte[] byteArray)
+        {
+            return await Task.Run(() =>
+            {
+                if (byteArray != null && byteArray.Length > 0)
+                {
+                    return byteArray; // In a real case, you might do more processing here
+                }
+                return null;
+            });
         }
     }
 }

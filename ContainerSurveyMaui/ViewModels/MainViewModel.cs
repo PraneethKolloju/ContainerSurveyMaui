@@ -100,6 +100,7 @@ namespace ContainerSurveyMaui.ViewModels
 
                 foreach (var item in data)
                 {
+                    DateTime createdOndt = DateTime.Parse(item.createdOn);
                     SurveyData.Add(new SurveyEntry
                     {
                         id = item.id,
@@ -114,7 +115,7 @@ namespace ContainerSurveyMaui.ViewModels
                         attachment_2 = item.attachment_2,
                         attachment_3 = item.attachment_3,
                         attachment_4 = item.attachment_4,
-
+                        createdOn = createdOndt.ToString("dd-MM-yyyy"),
                     });
 
                 }

@@ -20,7 +20,6 @@ namespace ContainerSurveyMaui
                 .UseMauiCommunityToolkit()
                 .UseMauiApp<App>()
                 .UseUraniumUI()
-                .UseMauiMaps()
                 .UseUraniumUIMaterial()
                 .ConfigureFonts(fonts =>
                 {

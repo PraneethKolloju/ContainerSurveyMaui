@@ -14,7 +14,7 @@
         <vm:UserDataViewModel/>
     </ContentPage.BindingContext>
 
-    <ScrollView>
+    <ScrollView BackgroundColor="#f7f7f7">
         <StackLayout Margin="1" Loaded="TableView_Loaded">
             <Grid>
                 <Grid.RowDefinitions>
@@ -29,14 +29,17 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Frame Grid.Row="0" BackgroundColor="White" BorderColor="White" HasShadow="False">
+                <Frame Grid.Row="0" BackgroundColor="White" BorderColor="White" HasShadow="True">
                     <HorizontalStackLayout BackgroundColor="Transparent" HeightRequest="55" HorizontalOptions="Center" VerticalOptions="Center" >
                         <Image Source="vedanta_logo" HeightRequest="85"/>
                     </HorizontalStackLayout>
                 </Frame>
                 <Label FontSize="25" HorizontalOptions="Center" Margin="0,15,0,0" TextColor="#005298" Grid.Row="1">User Details</Label>
-                <Button Text="Create New User" Clicked="Button_Clicked"  WidthRequest="200" ImageSource="adduser" BorderColor="Black" BackgroundColor="White" TextColor="Black"  Grid.Row="2" Margin="0,10"/>
-                <Button Text="Show Filters" Clicked="showhidefitlers_Clicked"  WidthRequest="200" x:Name="showhidefitlers" ImageSource="setting" BorderColor="Black" BackgroundColor="White" TextColor="Black"  Grid.Row="3"/>
+                <Button Text="Create New User" Margin="0,20,0,10" FontSize="13" Clicked="Button_Clicked" ImageSource="adduser" Grid.Row="2"  BorderColor="Black" BackgroundColor="White" TextColor="Black" WidthRequest="250" HeightRequest="50" />
+                <Button Text="Show Filters" Margin="0,0,0,0" FontSize="13" Clicked="showhidefitlers_Clicked" x:Name="showhidefitlers" ImageSource="setting" Grid.Row="3"  BorderColor="Black" BackgroundColor="White" TextColor="Black" WidthRequest="250" HeightRequest="50" />
+
+                <!--<Button Text="Create New User" Clicked="Button_Clicked"  WidthRequest="200" ImageSource="adduser" BorderColor="Black" BackgroundColor="White" TextColor="Black"  Grid.Row="2" Margin="0,10"/>
+                <Button Text="Show Filters" Clicked="showhidefitlers_Clicked"  WidthRequest="200" x:Name="showhidefitlers" ImageSource="setting" BorderColor="Black" BackgroundColor="White" TextColor="Black"  Grid.Row="3"/>-->
                 <StackLayout x:Name="SearchFilters" IsVisible="False"  Margin="0,0,15,0"   Grid.Row="4" HorizontalOptions="CenterAndExpand" >
                     <Grid Margin="0,10,0,5">
                         <ur:TextField x:Name="username" Title="Enter User Name or Phone number" TextColor="Black"  AccentColor="Black" WidthRequest="300" Margin="35,0,10,0" />
@@ -70,7 +73,7 @@
                                                 <Label FontAttributes="Bold" FontSize="15" TextColor="#005298">Role:</Label>
                                                 <Label Text="{Binding role}" LineBreakMode="WordWrap" MaxLines="4"/>
                                             </HorizontalStackLayout>
-                                            <Button Text="Reset User" Margin="0,20,0,0" Clicked="Button_Clicked_3" ImageSource="resetpwd" BorderColor="Black" BackgroundColor="#005298" TextColor="White" FontSize="12" WidthRequest="150"  BindingContext="{Binding .}" />
+                                            <Button Text="ResetUser" Margin="0,20,0,0" FontSize="13" Clicked="Button_Clicked_3" ImageSource="resetpwd" BorderColor="Black" BackgroundColor="#005298"  WidthRequest="150" HeightRequest="50" TextColor="White"    BindingContext="{Binding .}" />
                                         </VerticalStackLayout>
                                     </StackLayout>
                                 </Frame>
