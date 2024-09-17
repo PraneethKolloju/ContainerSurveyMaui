@@ -47,7 +47,7 @@
 
                         <Button Grid.Row="6" BackgroundColor="White" Text="Reset Password?" TextColor="Black"  FontAttributes="Bold" HorizontalOptions="CenterAndExpand" Clicked="Button_Clicked" HeightRequest="45" />
                         <!--<Label Grid.Row="7" Text="Forgot Password?"  FontAttributes="Bold" HorizontalOptions="CenterAndExpand"></Label>-->
-                        <!--<ImageButton Grid.Row="8" Margin="30,-10,30,0" Source="touch" HeightRequest="30" WidthRequest="30"  Clicked="Bio_Clicked" Grid.Column="1"/>-->
+                        <!--<ImageButton Grid.Row="8 Margin="30,-10,30,0" Source="touch" HeightRequest="30" WidthRequest="30"  Clicked="Bio_Clicked" Grid.Column="1"/>-->
                         <!--<Label Grid.Row="9" Margin="0,45,0,0" Text="Don't have an account? Sign up" HorizontalOptions="CenterAndExpand"></Label>-->
                     </Grid>
                 </Frame>
