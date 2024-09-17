@@ -39,12 +39,11 @@
                         </Grid>
                         <Label Grid.Row="0"  Text="Container Survey Application" FontSize="20" FontAttributes="Bold" TextColor="#005298" HorizontalTextAlignment="Center" HorizontalOptions="Center" ></Label>
                         <!--<Label Grid.Row="1" FontFamily="GeoramaLight" Margin="0,-15,0,0" FontSize="20" Text="Application" TextColor="#005298"  HorizontalOptions="CenterAndExpand"></Label>-->
-                        <Entry  Grid.Row="1" PlaceholderColor="Black" x:Name="userNameEntry" Placeholder="Username" Margin="0,20,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" TextColor="Black"></Entry>
+                        <Entry  Grid.Row="1" PlaceholderColor="Black" x:Name="userNameEntry" Placeholder="Username" Margin="0,20,0,0"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" TextColor="Black"></Entry>
                         <Label Grid.Row="2"  TextColor="Red" Margin="8,-20,0,0" x:Name="nameValidation" FontSize="12"></Label>
                         <Entry Grid.Row="3"  PlaceholderColor="Black" Margin="0,-20,0,0" x:Name="passwordEntry" Placeholder="Password" IsPassword="True" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></Entry>
                         <Label Grid.Row="4"  TextColor="Red" Margin="8,-20,0,0" x:Name="pwdValidations"  FontSize="12"></Label>
                         <Button Grid.Row="5" Text="Login" BackgroundColor="#005298" CornerRadius="20" Clicked="Login_Clicked" x:Name="loginButton" HeightRequest="45"></Button>
-
 
                         <Button Grid.Row="6" BackgroundColor="White" Text="Reset Password?" TextColor="Black"  FontAttributes="Bold" HorizontalOptions="CenterAndExpand" Clicked="Button_Clicked" HeightRequest="45" />
                         <!--<Label Grid.Row="7" Text="Forgot Password?"  FontAttributes="Bold" HorizontalOptions="CenterAndExpand"></Label>-->

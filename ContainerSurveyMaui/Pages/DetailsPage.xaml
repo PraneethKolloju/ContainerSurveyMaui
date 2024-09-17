@@ -39,42 +39,54 @@
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
                                 <Frame BorderColor="#005298"  BackgroundColor="Transparent" HasShadow="True" CornerRadius="6" >
-                               <StackLayout Margin="0,10,0,20">
+                                    <StackLayout Margin="0,10,0,20">
+                                            
+                                        <HorizontalStackLayout Padding="0,0,0,10">
+                                            <Image HeightRequest="300" WidthRequest="300" Margin="0,20"
+Source="{Binding attachment_1, Converter={StaticResource ByteArrayToImageSourceConverter}}"
+IsVisible="{Binding attachment_1, Converter={StaticResource ByteArrayToImageSourceConverter}, ConverterParameter=IsNotNullOrEmpty}">
+                                            </Image>
+                                            <Label Text="Attachment 1" IsVisible="{Binding attachment_1, Converter={StaticResource ByteArrayToImageSourceConverter}, ConverterParameter=IsNotNullOrEmpty}"/>
+                                            <Label Text="attachment 1 not found" Margin="50,0,0,0"
+TextColor="Red"
+IsVisible="{Binding attachment_1, Converter={StaticResource ByteArrayToImageSourceConverter}, ConverterParameter=IsNullOrEmpty}">
+                                            </Label>
+                                        </HorizontalStackLayout>
 
                                         <HorizontalStackLayout Padding="0,0,0,10">
-                                            <Image Source="{Binding attachment_1, Converter={StaticResource ByteArrayToImageSourceConverter}}"  
-            HeightRequest="300" WidthRequest="300"  />
-                                        </HorizontalStackLayout>
-                                        
-                                        <HorizontalStackLayout  Padding="0,0,0,10" HorizontalOptions="Center">
-                                            <Label Text="Attachment 1"/>
-                                        </HorizontalStackLayout>
-
-                                        <HorizontalStackLayout  Padding="0,0,10,10">
-                                            <Image Source="{Binding attachment_2, Converter={StaticResource ByteArrayToImageSourceConverter}}"  
-HeightRequest="300" WidthRequest="300" />
-                                        </HorizontalStackLayout>
-                                        
-                                        <HorizontalStackLayout  Padding="0,0,0,10" HorizontalOptions="Center">
-                                            <Label Text="Attachment 2"/>
+                                            <Image HeightRequest="300" WidthRequest="300"  Margin="0,20"
+Source="{Binding attachment_2, Converter={StaticResource ByteArrayToImageSourceConverter}}"
+IsVisible="{Binding attachment_2, Converter={StaticResource ByteArrayToImageSourceConverter}, ConverterParameter=IsNotNullOrEmpty}">
+                                            </Image>
+                                            <Label Text="Attachment 2" IsVisible="{Binding attachment_2, Converter={StaticResource ByteArrayToImageSourceConverter}, ConverterParameter=IsNotNullOrEmpty}"/>
+                                            <Label Text="attachment 2 not found" Margin="50,0,0,0"
+TextColor="Red"
+IsVisible="{Binding attachment_2, Converter={StaticResource ByteArrayToImageSourceConverter}, ConverterParameter=IsNullOrEmpty}">
+                                            </Label>
                                         </HorizontalStackLayout>
 
-                                        <HorizontalStackLayout  Padding="0,0,10,10">
-                                            <Image Source="{Binding attachment_3, Converter={StaticResource ByteArrayToImageSourceConverter}}"  
-HeightRequest="300" WidthRequest="300" />
-                                        </HorizontalStackLayout>
-                                        
-                                        <HorizontalStackLayout  Padding="0,0,0,10" HorizontalOptions="Center">
-                                            <Label Text="Attachment 3"/>
+                                        <HorizontalStackLayout Padding="0,0,0,10">
+                                            <Image HeightRequest="300" WidthRequest="300"  Margin="0,20"
+Source="{Binding attachment_3, Converter={StaticResource ByteArrayToImageSourceConverter}}"
+IsVisible="{Binding attachment_3, Converter={StaticResource ByteArrayToImageSourceConverter}, ConverterParameter=IsNotNullOrEmpty}">
+                                            </Image>
+                                            <Label Text="Attachment 3" IsVisible="{Binding attachment_3, Converter={StaticResource ByteArrayToImageSourceConverter}, ConverterParameter=IsNotNullOrEmpty}"/>
+                                            <Label Text="attachment 3 not found" Margin="50,0,0,0"
+TextColor="Red"
+IsVisible="{Binding attachment_3, Converter={StaticResource ByteArrayToImageSourceConverter}, ConverterParameter=IsNullOrEmpty}">
+                                            </Label>
                                         </HorizontalStackLayout>
 
-                                        <HorizontalStackLayout  Padding="0,0,10,0">
-                                            <Image Source="{Binding attachment_4, Converter={StaticResource ByteArrayToImageSourceConverter}}"  
-HeightRequest="300" WidthRequest="300" />
-                                        </HorizontalStackLayout>
-                                        
-                                        <HorizontalStackLayout  Padding="0,0,0,0" HorizontalOptions="Center">
-                                            <Label Text="Attachment 4"/>
+                                        <HorizontalStackLayout Padding="0,0,0,10">
+                                            <Image HeightRequest="300" WidthRequest="300"  Margin="0,20"
+           Source="{Binding attachment_4, Converter={StaticResource ByteArrayToImageSourceConverter}}"
+           IsVisible="{Binding attachment_4, Converter={StaticResource ByteArrayToImageSourceConverter}, ConverterParameter=IsNotNullOrEmpty}">
+                                            </Image>
+                                            <Label Text="Attachment 4" IsVisible="{Binding attachment_4, Converter={StaticResource ByteArrayToImageSourceConverter}, ConverterParameter=IsNotNullOrEmpty}"/>
+                                            <Label Text="attachment 4 not found" Margin="50,0,0,0"
+           TextColor="Red"
+           IsVisible="{Binding attachment_4, Converter={StaticResource ByteArrayToImageSourceConverter}, ConverterParameter=IsNullOrEmpty}">
+                                            </Label>
                                         </HorizontalStackLayout>
 
                                     </StackLayout>
