@@ -57,7 +57,7 @@
                     <Button Text="Attachment 4"  Clicked="OnUploadImageClicked4" ImageSource="upload" BorderColor="Black" BackgroundColor="White" TextColor="#005298" WidthRequest="340" HeightRequest="50"/>
                     <Image  x:Name="SelectedImage4" WidthRequest="400" HeightRequest="400" Margin="0,10,0,0" IsVisible="False"/>
                 </StackLayout>
-                <ur:TextField Title="Remarks*"  WidthRequest="340" HeightRequest="50"  AccentColor="#005298" x:Name="Remarks" >
+                <ur:TextField Title="Remarks*" TextColor="Black" WidthRequest="340" HeightRequest="50"  AccentColor="#005298" x:Name="Remarks" >
                     <ur:TextField.Behaviors>
                         <toolkit:TextValidationBehavior
                             x:Name="RemarksValid"

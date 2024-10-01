@@ -2,14 +2,14 @@ namespace ContainerSurveyMaui.Pages;
 
 public partial class MasterPage : ContentPage
 {
-	public MasterPage()
-	{
-		InitializeComponent();
-	}
+    public MasterPage()
+    {
+        InitializeComponent();
+    }
 
 
 
-    
+
 
     protected override async void OnAppearing()
     {
@@ -22,7 +22,11 @@ public partial class MasterPage : ContentPage
         }
         else
         {
-            return;
+            var Role = await SecureStorage.GetAsync("Role");
+            if(Role=="User")
+                await Navigation.PushAsync(new UserEntryPage());
+            else
+                await Navigation.PushAsync(new SurveyPage());
         }
     }
 

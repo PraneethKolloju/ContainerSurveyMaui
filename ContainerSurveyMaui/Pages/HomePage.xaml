@@ -42,7 +42,7 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
-                    <ur:TextField x:Name="passwordEntry" Title="Password" AccentColor="#005298" Loaded="Generate_Pwd"/>
+                    <ur:TextField x:Name="passwordEntry" TextColor="Black" Title="Password" AccentColor="#005298" Loaded="Generate_Pwd"/>
                     <ImageButton Source="undo" Margin="5" HeightRequest="30" WidthRequest="30" Clicked="Generate_Pwd" Grid.Column="1"/>
                 </Grid>
                 <Button x:Name="CreateBtn" Text="Create" Margin="10,50,0,0" BackgroundColor="#005298" Clicked="Button_Clicked" WidthRequest="300"  Grid.Row="7"/>

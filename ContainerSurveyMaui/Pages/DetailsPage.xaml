@@ -46,8 +46,8 @@
 Source="{Binding attachment_1, Converter={StaticResource ByteArrayToImageSourceConverter}}"
 IsVisible="{Binding attachment_1, Converter={StaticResource ByteArrayToImageSourceConverter}, ConverterParameter=IsNotNullOrEmpty}">
                                             </Image>
-                                            <Label Text="Attachment 1" IsVisible="{Binding attachment_1, Converter={StaticResource ByteArrayToImageSourceConverter}, ConverterParameter=IsNotNullOrEmpty}"/>
-                                            <Label Text="attachment 1 not found" Margin="50,0,0,0"
+                                            <Label Text="Attachment 1" HorizontalOptions="Center" IsVisible="{Binding attachment_1, Converter={StaticResource ByteArrayToImageSourceConverter}, ConverterParameter=IsNotNullOrEmpty}"/>
+                                            <Label Text="attachment 1 not found" HorizontalOptions="Center"
 TextColor="Red"
 IsVisible="{Binding attachment_1, Converter={StaticResource ByteArrayToImageSourceConverter}, ConverterParameter=IsNullOrEmpty}">
                                             </Label>
@@ -58,8 +58,8 @@ IsVisible="{Binding attachment_1, Converter={StaticResource ByteArrayToImageSour
 Source="{Binding attachment_2, Converter={StaticResource ByteArrayToImageSourceConverter}}"
 IsVisible="{Binding attachment_2, Converter={StaticResource ByteArrayToImageSourceConverter}, ConverterParameter=IsNotNullOrEmpty}">
                                             </Image>
-                                            <Label Text="Attachment 2" IsVisible="{Binding attachment_2, Converter={StaticResource ByteArrayToImageSourceConverter}, ConverterParameter=IsNotNullOrEmpty}"/>
-                                            <Label Text="attachment 2 not found" Margin="50,0,0,0"
+                                            <Label Text="Attachment 2" HorizontalOptions="Center" IsVisible="{Binding attachment_2, Converter={StaticResource ByteArrayToImageSourceConverter}, ConverterParameter=IsNotNullOrEmpty}"/>
+                                            <Label Text="attachment 2 not found" HorizontalOptions="Center"
 TextColor="Red"
 IsVisible="{Binding attachment_2, Converter={StaticResource ByteArrayToImageSourceConverter}, ConverterParameter=IsNullOrEmpty}">
                                             </Label>
@@ -70,8 +70,8 @@ IsVisible="{Binding attachment_2, Converter={StaticResource ByteArrayToImageSour
 Source="{Binding attachment_3, Converter={StaticResource ByteArrayToImageSourceConverter}}"
 IsVisible="{Binding attachment_3, Converter={StaticResource ByteArrayToImageSourceConverter}, ConverterParameter=IsNotNullOrEmpty}">
                                             </Image>
-                                            <Label Text="Attachment 3" IsVisible="{Binding attachment_3, Converter={StaticResource ByteArrayToImageSourceConverter}, ConverterParameter=IsNotNullOrEmpty}"/>
-                                            <Label Text="attachment 3 not found" Margin="50,0,0,0"
+                                            <Label Text="Attachment 3" HorizontalOptions="Center" IsVisible="{Binding attachment_3, Converter={StaticResource ByteArrayToImageSourceConverter}, ConverterParameter=IsNotNullOrEmpty}"/>
+                                            <Label Text="attachment 3 not found" HorizontalOptions="Center"
 TextColor="Red"
 IsVisible="{Binding attachment_3, Converter={StaticResource ByteArrayToImageSourceConverter}, ConverterParameter=IsNullOrEmpty}">
                                             </Label>
@@ -82,8 +82,8 @@ IsVisible="{Binding attachment_3, Converter={StaticResource ByteArrayToImageSour
            Source="{Binding attachment_4, Converter={StaticResource ByteArrayToImageSourceConverter}}"
            IsVisible="{Binding attachment_4, Converter={StaticResource ByteArrayToImageSourceConverter}, ConverterParameter=IsNotNullOrEmpty}">
                                             </Image>
-                                            <Label Text="Attachment 4" IsVisible="{Binding attachment_4, Converter={StaticResource ByteArrayToImageSourceConverter}, ConverterParameter=IsNotNullOrEmpty}"/>
-                                            <Label Text="attachment 4 not found" Margin="50,0,0,0"
+                                            <Label Text="Attachment 4" HorizontalOptions="Center" IsVisible="{Binding attachment_4, Converter={StaticResource ByteArrayToImageSourceConverter}, ConverterParameter=IsNotNullOrEmpty}"/>
+                                            <Label Text="attachment 4 not found" HorizontalOptions="Center"
            TextColor="Red"
            IsVisible="{Binding attachment_4, Converter={StaticResource ByteArrayToImageSourceConverter}, ConverterParameter=IsNullOrEmpty}">
                                             </Label>
