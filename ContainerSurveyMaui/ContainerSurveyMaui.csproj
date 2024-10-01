@@ -51,7 +51,7 @@
 
 		<!-- Splash Screen -->
 
-		<MauiSplashScreen Include="Resources\Splash\vedantasplash.svg" Color="White" />
+		<MauiSplashScreen Include="Resources\Splash\vedantasplash.svg" Color="White"  />
 
 
 		<!-- Images -->

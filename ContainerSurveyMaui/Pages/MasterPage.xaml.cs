@@ -22,11 +22,13 @@ public partial class MasterPage : ContentPage
         }
         else
         {
-            var Role = await SecureStorage.GetAsync("Role");
-            if(Role=="User")
-                await Navigation.PushAsync(new UserEntryPage());
-            else
-                await Navigation.PushAsync(new SurveyPage());
+            //var Role = await SecureStorage.GetAsync("Role");
+            //if(Role=="User")
+            //    await Shell.Current.GoToAsync("//ViewDataPage"); 
+            //else
+            //    await Shell.Current.GoToAsync("//SurveyPage"); 
+            Application.Current.MainPage = new NavigationPage(new AppShell());
+
         }
     }
 
